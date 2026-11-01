@@ -141,6 +141,7 @@ $name = cleanText($data['name'] ?? '', 80);
 $phone = cleanText($data['phone'] ?? '', 32);
 $message = cleanText($data['message'] ?? '', 2000);
 $contactSlot = cleanText($data['contactSlot'] ?? '', 40);
+$city = cleanText($data['city'] ?? '', 100);
 $deadline = cleanText($data['deadline'] ?? '', 10);
 $consent = ($data['consent'] ?? false) === true;
 $docType = cleanText($data['docType'] ?? '', 40);
@@ -226,7 +227,7 @@ if (fseek($csv, 0, SEEK_END) !== 0) {
 }
 if (ftell($csv) === 0) {
     if (fwrite($csv, "\xEF\xBB\xBF") === false ||
-        fputcsv($csv, ['Дата UTC', 'Приоритет', 'Имя', 'Телефон', 'Время связи Иркутск', 'Документ', 'Категория', 'Формат', 'Срочность', 'Крайний срок', 'Расчет сервера ₽', 'Описание'], ',', '"', '') === false) {
+        fputcsv($csv, ['Дата UTC', 'Приоритет', 'Имя', 'Телефон', 'Город / суд', 'Время связи Иркутск', 'Документ', 'Категория', 'Формат', 'Срочность', 'Крайний срок', 'Расчет сервера ₽', 'Описание'], ',', '"', '') === false) {
         flock($csv, LOCK_UN);
         fclose($csv);
         respond(500, ['ok' => false, 'error' => 'Не удалось создать журнал обращений.']);
@@ -238,6 +239,7 @@ $row = [
     $priority,
     csvSafe($name),
     csvSafe($phone),
+    csvSafe($city),
     csvSafe($contactSlot),
     $docType,
     $category,

@@ -81,32 +81,32 @@
   const anatomy = {
     claim: {
       label: "ИСКОВОЕ ЗАЯВЛЕНИЕ",
-      points: [
-        ["Подсудность", "Проверяем, какой суд должен рассматривать спор, и указываем необходимые сведения о сторонах."],
-        ["Фактура и доказательства", "Излагаем события в понятной последовательности и связываем важные факты с приложенными доказательствами."],
-        ["Правовые основания", "Подбираем применимые нормы и относящиеся к спору выводы судов, не подменяя ими факты."],
-        ["Расчет требований", "Показываем состав суммы и проверяем расчет, цену иска и вопрос о госпошлине."],
-        ["Просительная часть", "Формулируем конкретный результат, который просим суд установить или взыскать."]
+      sections: [
+        { heading: "Шапка и подсудность", fragment: "В Октябрьский районный суд г. Иркутска · Истец / Ответчик · Цена иска и госпошлина · ст. 131 ГПК РФ", title: "Суд и участники спора", copy: "Сверяем родовую и территориальную подсудность, наименование суда, сведения об истце и ответчике, цену иска и обязательные реквизиты. Содержание иска проверяется по ст. 131 ГПК РФ или ст. 125 АПК РФ; до подачи также учитывается досудебный порядок, если он обязателен." },
+        { heading: "Обстоятельства и доказательства", fragment: "Обязательство подтверждается договором и платежными документами · Приложение № 1 — договор · Приложение № 2 — выписка по счету", title: "Факты, связанные с документами", copy: "Каждое юридически значимое обстоятельство излагается в хронологическом порядке и связывается с конкретным доказательством. Такая структура помогает суду соотнести утверждение с приложением, а сторонам — проверить относимость документов и полноту доказательственной базы." },
+        { heading: "Правовое обоснование", fragment: "Ст. 309, 310 ГК РФ · Ст. 56, 67 ГПК РФ · Разъяснения Пленума Верховного Суда РФ", title: "Нормы и их применение", copy: "Правовое основание должно объяснять, почему установленные факты приводят к заявленному требованию. В зависимости от спора проверяются нормы ГК РФ и правила доказывания и оценки доказательств по ст. 56 и 67 ГПК РФ либо соответствующие положения АПК РФ; разъяснения Пленума применяются с учетом предмета дела." },
+        { heading: "Расчет требований", fragment: "Основной долг · Период начисления · Неустойка или проценты · Цена иска и госпошлина", title: "Проверяемая арифметика", copy: "Расчет раскрывает состав требований, период и основание каждой суммы, учитывает платежи и исключает повторное начисление. Цена иска определяется по правилам процессуального закона; госпошлина рассчитывается по НК РФ с учетом характера и размера требований." },
+        { heading: "Просительная часть и ходатайства", fragment: "ПРОШУ СУД: взыскать заявленную сумму и судебные расходы · Истребовать доказательства · ст. 57 ГПК РФ", title: "Конкретная просьба к суду", copy: "Просительная часть должна соответствовать основаниям и расчету, не выходить за пределы заявленной позиции и позволять исполнить судебный акт. При невозможности самостоятельно получить доказательство можно мотивировать ходатайство по ст. 57 ГПК РФ и указать, какое доказательство требуется и почему." }
       ]
     },
     objection: {
       label: "ВОЗРАЖЕНИЕ НА ИСК",
-      points: [
-        ["Подсудность и стороны", "Сверяем сведения о суде и участниках дела с иском и судебными извещениями."],
-        ["Фактура и доказательства", "Отвечаем на существенные факты истца и показываем, какими документами подтверждается позиция."],
-        ["Правовые основания", "Сопоставляем доводы иска с применимыми нормами и обстоятельствами конкретного спора."],
-        ["Расчет требований", "Проверяем каждый элемент заявленной суммы и отдельно указываем спорные расчеты."],
-        ["Просительная часть", "Указываем, какие требования просим отклонить или оценить иначе, и заявляем необходимые ходатайства."]
+      sections: [
+        { heading: "Суд и реквизиты дела", fragment: "В Кировский районный суд г. Иркутска · Дело № 2-1840/… · Истец / Ответчик", title: "Реквизиты конкретного дела", copy: "Возражения адресуются суду, в производстве которого находится спор, и содержат номер дела и данные участников. Проверяем процессуальный статус сторон, дату заседания и сведения из судебных извещений, чтобы отзыв был приобщен к нужному делу." },
+        { heading: "Факты и документы", fragment: "Истец указывает на нарушение срока · Приложение № 1 — договор · Приложение № 2 — платежное поручение", title: "Ответ на фактические доводы", copy: "Каждый существенный довод иска сопоставляется с материалами дела. В отзыве отмечается, какие обстоятельства признаются, какие оспариваются и какими документами подтверждаются платежи, исполнение или переписка." },
+        { heading: "Правовое обоснование", fragment: "Ст. 309, 404 ГК РФ · Ст. 35, 56, 149 ГПК РФ · Возражения по составу требований", title: "Позиция ответчика по закону", copy: "Нормы приводятся применительно к фактам, а не отдельным перечнем. Для гражданского процесса учитываются права стороны по ст. 35 ГПК РФ, распределение бремени доказывания по ст. 56 и подготовка дела по ст. 149; в арбитражном споре — требования ст. 131 АПК РФ." },
+        { heading: "Контррасчет", fragment: "Заявлено: основной долг и начисления · Учтены платежи и спорные периоды · Ст. 333 ГК РФ — при наличии оснований", title: "Проверка суммы и начислений", copy: "Сверяем исходные данные, ставки, периоды, платежи и договорные условия. При наличии оснований отдельно мотивируется просьба о применении ст. 333 ГК РФ; вопрос о снижении неустойки разрешает суд с учетом обстоятельств дела." },
+        { heading: "Просительная часть", fragment: "ПРОШУ СУД: учесть возражения и контррасчет · Истребовать доказательства · Рассмотреть ходатайства", title: "Просьбы, связанные с защитой", copy: "В конце отзыва четко указывается, какие требования оспариваются и какие процессуальные действия необходимы. Ходатайство об истребовании доказательств по ст. 57 ГПК РФ обосновывается невозможностью получить документ самостоятельно и его значением для спора." }
       ]
     },
     appeal: {
       label: "АПЕЛЛЯЦИОННАЯ ЖАЛОБА",
-      points: [
-        ["Порядок подачи", "Уточняем срок, суд первой инстанции и правила направления жалобы участникам дела."],
-        ["Обстоятельства и доказательства", "Выделяем факты, которые суд установил или оценил спорным образом, и проверяем допустимость новых материалов."],
-        ["Основания пересмотра", "Связываем конкретные нарушения с выводами решения и применимыми нормами."],
-        ["Расчет и последствия", "Проверяем, как спорные выводы повлияли на взыскание и иные части решения."],
-        ["Просительная часть", "Формулируем допустимый вариант пересмотра решения и необходимые сопутствующие просьбы."]
+      sections: [
+        { heading: "Суд и номер дела", fragment: "В Иркутский областной суд через суд первой инстанции · Дело № 2-1840/… · Заявитель / другие лица", title: "Надлежащий порядок подачи", copy: "Проверяем вид производства, суд первой инстанции, адресатов и срок обжалования. Для гражданского дела учитываются требования ст. 320–322 ГПК РФ; в арбитражном процессе применяются правила главы 34 АПК РФ, включая порядок подачи через суд первой инстанции." },
+        { heading: "Факты и материалы дела", fragment: "Вывод суда о спорном обстоятельстве · Протокол заседания · Приложение № 1 — документ из материалов дела", title: "Связь доводов с материалами", copy: "Для каждого спорного вывода указываем, где он отражен в решении и какие материалы дела имеют значение. Новые доказательства требуют отдельного объяснения причин, по которым их нельзя было представить ранее, с учетом требований апелляционного производства." },
+        { heading: "Основания пересмотра", fragment: "Неполное установление обстоятельств · Неверная оценка доказательств · Проверка по ст. 330 ГПК РФ", title: "Конкретные нарушения", copy: "Общие слова о несогласии не заменяют оснований для отмены или изменения решения. Доводы соотносятся с перечнем ст. 330 ГПК РФ либо нормами АПК РФ, показывается влияние возможной ошибки на выводы суда и подкрепляется позиция материалами дела." },
+        { heading: "Расчет и госпошлина", fragment: "Оспариваемая часть решения · Сумма по доводам жалобы · Проверка госпошлины по НК РФ", title: "Объем обжалования", copy: "Отмечаем, какая часть решения оспаривается, как она отражается на присужденных суммах и соответствует ли расчет доводам жалобы. Проверяется вопрос госпошлины и подтверждающих документов по действующим положениям НК РФ." },
+        { heading: "Просительная часть", fragment: "ПРОШУ СУД: отменить или изменить решение в указанной части · Приобщить документы при наличии оснований", title: "Требуемый вариант пересмотра", copy: "Просьба должна соответствовать полномочиям апелляционной инстанции и доводам жалобы. Проверяем перечень приложений, подтверждение направления копий другим участникам и процессуальные ходатайства; итог пересмотра определяет суд." }
       ]
     }
   };
@@ -116,6 +116,8 @@
   let state = { ...defaults };
   let latestDeadline = "";
   let latestDeadlineType = "order";
+  let cityWasCustomized = false;
+  let copyFeedbackTimer;
 
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
@@ -184,6 +186,7 @@
       if (hidden) hidden.value = state[key];
     }
     $('input[name="totalPrice"]', form).value = String(price.total);
+    refreshMessagePreview();
   }
 
   function escapeHtml(value) {
@@ -216,6 +219,7 @@
     if (!dateValue) {
       latestDeadline = "";
       result.innerHTML = '<span class="result-mark">ДАТА НЕ ВЫБРАНА</span><h3>Проверьте срок подачи</h3><p>Выберите документ и дату вручения, чтобы увидеть расчет.</p>';
+      refreshMessagePreview();
       return;
     }
     const [year, month, day] = dateValue.split("-").map(Number);
@@ -253,6 +257,7 @@
       note = `Осталось ${remaining} дн. ${note}`;
     }
     result.innerHTML = `<span class="result-mark">${escapeHtml(marker)}</span><h3>${escapeHtml(title)}</h3><p>${escapeHtml(note)}</p>`;
+    refreshMessagePreview();
   }
 
   function currentChecklistText() {
@@ -261,7 +266,9 @@
 
   function composeMessage() {
     const dateLabel = latestDeadline ? new Intl.DateTimeFormat("ru-RU", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(`${latestDeadline}T00:00:00Z`)) : "не указан";
-    const city = document.querySelector('[data-geo="irkutsk"]').getAttribute("aria-pressed") === "true" ? "Иркутск" : "дистанционно, вся Россия";
+    const cityInput = $("#client-city");
+    const geoMode = document.querySelector('[data-geo="irkutsk"]').getAttribute("aria-pressed") === "true" ? "Иркутск" : "дистанционно, вся Россия";
+    const city = cityInput.value.trim() || geoMode;
     return [
       "Здравствуйте, Мария. Прошу посмотреть ситуацию.",
       `Документ: ${labels.documents[state.docType]}`,
@@ -269,18 +276,41 @@
       `Формат: ${labels.formats[state.workFormat]}`,
       `Срочность: ${labels.urgency[state.urgency]}`,
       `Крайний срок подачи (ориентир): ${dateLabel}`,
-      `Город / формат связи: ${city}`,
+      `Город / суд: ${city}`,
+      `Формат связи: ${geoMode}`,
       `Предварительный расчет: ${formatMoney(currentPrice().total)} ₽`,
       "Что подготовить:\n" + currentChecklistText()
     ].join("\n");
   }
 
+  function refreshMessagePreview() {
+    const preview = $("#message-preview");
+    if (preview) preview.textContent = composeMessage();
+  }
+
   function updateConsentButtons() {
     const permitted = $("#consent").checked;
-    for (const button of [$("#submit-button"), $("#telegram-button"), $("#whatsapp-button")]) {
+    for (const button of [$("#submit-button"), $("#telegram-button"), $("#whatsapp-button"), $("#copy-dossier-button")]) {
       button.disabled = !permitted;
       button.setAttribute("aria-disabled", String(!permitted));
     }
+  }
+
+  async function copyDossier() {
+    if (!$("#consent").checked) return;
+    const button = $("#copy-dossier-button");
+    const originalText = "Скопировать карточку досье";
+    window.clearTimeout(copyFeedbackTimer);
+    try {
+      await navigator.clipboard.writeText(composeMessage());
+      button.textContent = "Карточка скопирована ✓";
+    } catch (error) {
+      console.warn("Не удалось скопировать карточку досье.", error);
+      button.textContent = "Не удалось скопировать";
+    }
+    copyFeedbackTimer = window.setTimeout(() => {
+      button.textContent = originalText;
+    }, 2000);
   }
 
   function openMessenger(kind) {
@@ -300,6 +330,19 @@
     $("#format-hint").textContent = mode === "irkutsk"
       ? "Очный формат доступен для Иркутска и Иркутского района."
       : "Для других регионов доступны документ и дистанционная подача.";
+    const cityInput = $("#client-city");
+    const standardCity = cityInput.value.trim() === "" || cityInput.value.trim() === "Иркутск";
+    if (!cityWasCustomized || standardCity) {
+      cityWasCustomized = false;
+      if (mode === "irkutsk") {
+        cityInput.value = "Иркутск";
+        cityInput.placeholder = "Например: Иркутск, Кировский районный суд";
+      } else {
+        cityInput.value = "";
+        cityInput.placeholder = "Укажите ваш город или суд в регионе РФ";
+      }
+    }
+    refreshMessagePreview();
   }
 
   function initPhoneMask() {
@@ -559,6 +602,23 @@
       $("#calculator").scrollIntoView({ behavior: "smooth", block: "start" });
     }));
     $$("[data-geo]").forEach((button) => button.addEventListener("click", () => applyGeo(button.dataset.geo)));
+    const cityInput = $("#client-city");
+    cityInput.addEventListener("input", () => {
+      const city = cityInput.value.trim();
+      cityWasCustomized = city !== "" && city !== "Иркутск";
+      refreshMessagePreview();
+    });
+    $("#request-form").addEventListener("reset", () => {
+      window.setTimeout(() => {
+        cityWasCustomized = false;
+        const isIrkutsk = document.querySelector('[data-geo="irkutsk"]').getAttribute("aria-pressed") === "true";
+        cityInput.value = isIrkutsk ? "Иркутск" : "";
+        cityInput.placeholder = isIrkutsk
+          ? "Например: Иркутск, Кировский районный суд"
+          : "Укажите ваш город или суд в регионе РФ";
+        refreshMessagePreview();
+      }, 0);
+    });
     $$("[data-filter]").forEach((button) => button.addEventListener("click", () => {
       $$("[data-filter]").forEach((tab) => {
         const active = tab === button;
@@ -574,21 +634,39 @@
         tab.setAttribute("aria-pressed", String(active));
       });
       $("#anatomy-doc-title").textContent = anatomy[button.dataset.anatomy].label;
-      renderHotspot(0, button.dataset.anatomy);
+      renderDocument(button.dataset.anatomy);
+      renderDocumentSection(0, button.dataset.anatomy);
     }));
-    function renderHotspot(index, type = $(".anatomy-tab.is-active").dataset.anatomy) {
-      const [title, copy] = anatomy[type].points[index];
-      $("#hotspot-number").textContent = `ПОЛЕ ${String(index + 1).padStart(2, "0")}`;
-      $("#hotspot-title").textContent = title;
-      $("#hotspot-copy").textContent = copy;
-      $$(".hotspot").forEach((hotspot) => hotspot.classList.toggle("is-active", Number(hotspot.dataset.hotspot) === index));
+    function renderDocument(type) {
+      anatomy[type].sections.forEach((sectionData, index) => {
+        const section = $(`.doc-section[data-hotspot="${index}"]`);
+        section.querySelector(".doc-section-heading").textContent = sectionData.heading;
+        section.querySelector(".doc-section-text").textContent = sectionData.fragment;
+      });
     }
-    $$(".hotspot").forEach((button) => button.addEventListener("click", () => renderHotspot(Number(button.dataset.hotspot))));
+    function renderDocumentSection(index, type = $(".anatomy-tab.is-active").dataset.anatomy) {
+      const sectionData = anatomy[type].sections[index];
+      const selectedSection = $(`.doc-section[data-hotspot="${index}"]`);
+      $$(".doc-section").forEach((section) => {
+        const active = section === selectedSection;
+        section.classList.toggle("is-active", active);
+        section.setAttribute("aria-pressed", String(active));
+      });
+      selectedSection.querySelector(".doc-section-heading").textContent = sectionData.heading;
+      selectedSection.querySelector(".doc-section-text").textContent = sectionData.fragment;
+      $("#hotspot-number").textContent = `РАЗДЕЛ ${String(index + 1).padStart(2, "0")}`;
+      $("#hotspot-title").textContent = sectionData.title;
+      $("#hotspot-copy").textContent = sectionData.copy;
+    }
+    $$(".doc-section").forEach((button) => button.addEventListener("click", () => renderDocumentSection(Number(button.dataset.hotspot))));
+    renderDocument("claim");
+    renderDocumentSection(0, "claim");
     $("#transfer-dossier").addEventListener("click", () => {
       $("#request").scrollIntoView({ behavior: "smooth", block: "start" });
       window.setTimeout(() => $("#client-name").focus({ preventScroll: true }), 500);
     });
     $("#consent").addEventListener("change", updateConsentButtons);
+    $("#copy-dossier-button").addEventListener("click", copyDossier);
     $("#telegram-button").addEventListener("click", () => openMessenger("telegram"));
     $("#whatsapp-button").addEventListener("click", () => openMessenger("whatsapp"));
     $("#request-form").addEventListener("submit", submitForm);
