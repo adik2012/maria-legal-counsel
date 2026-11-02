@@ -118,7 +118,6 @@
   let latestDeadline = "";
   let latestDeadlineType = "order";
   let cityWasCustomized = false;
-  let copyFeedbackTimer;
 
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
@@ -288,16 +287,20 @@
     const cityInput = $("#client-city");
     const geoMode = document.querySelector('[data-geo="irkutsk"]').getAttribute("aria-pressed") === "true" ? "Иркутск" : "дистанционно, вся Россия";
     const city = cityInput.value.trim() || geoMode;
+    const price = currentPrice();
+    const deadlineType = deadlines[latestDeadlineType];
     return [
-      "Здравствуйте, Мария. Прошу посмотреть ситуацию.",
+      "ДЕМОНСТРАЦИОННАЯ КАРТОЧКА · НЕ ОТПРАВЛЯЕТСЯ И НЕ ПЕРЕДАЕТСЯ",
       `Документ: ${labels.documents[state.docType]}`,
       `Категория: ${labels.categories[state.disputeCategory]}`,
       `Формат: ${labels.formats[state.workFormat]}`,
       `Срочность: ${labels.urgency[state.urgency]}`,
-      `Крайний срок подачи (ориентир): ${dateLabel}`,
+      `Проверяемый акт: ${deadlineType.title} · ${deadlineType.statute}`,
+      `Предварительный ориентир крайней даты подачи: ${dateLabel}`,
       `Город / суд: ${city}`,
       `Формат связи: ${geoMode}`,
-      `Предварительный расчет: ${formatMoney(currentPrice().total)} ₽`,
+      `Предварительный ориентир стоимости: ${formatMoney(price.total)} ₽`,
+      `Разбивка: базовая цена ${formatMoney(prices.documents[state.docType])} ₽ × коэффициент категории ${prices.categories[state.disputeCategory].toLocaleString("ru-RU")} = ${formatMoney(price.documentCost)} ₽; формат + ${formatMoney(prices.formats[state.workFormat])} ₽; сумма до срочности ${formatMoney(price.subtotal)} ₽; срочность × ${prices.urgency[state.urgency].toLocaleString("ru-RU")}; итог ${formatMoney(price.total)} ₽.`,
       "Что подготовить:\n" + currentChecklistText()
     ].join("\n");
   }
@@ -308,37 +311,9 @@
   }
 
   function updateConsentButtons() {
-    const permitted = $("#consent").checked;
-    for (const button of [$("#submit-button"), $("#telegram-button"), $("#whatsapp-button"), $("#copy-dossier-button")]) {
-      button.disabled = !permitted;
-      button.setAttribute("aria-disabled", String(!permitted));
-    }
-  }
-
-  async function copyDossier() {
-    if (!$("#consent").checked) return;
-    const button = $("#copy-dossier-button");
-    const originalText = "Скопировать карточку досье";
-    window.clearTimeout(copyFeedbackTimer);
-    try {
-      await navigator.clipboard.writeText(composeMessage());
-      button.textContent = "Карточка скопирована ✓";
-    } catch (error) {
-      console.warn("Не удалось скопировать карточку досье.", error);
-      button.textContent = "Не удалось скопировать";
-    }
-    copyFeedbackTimer = window.setTimeout(() => {
-      button.textContent = originalText;
-    }, 2000);
-  }
-
-  function openMessenger(kind) {
-    if (!$("#consent").checked) return;
-    const text = encodeURIComponent(composeMessage());
-    const url = kind === "telegram"
-      ? `https://t.me/share/url?url=&text=${text}`
-      : `https://wa.me/?text=${text}`;
-    window.open(url, "_blank", "noopener,noreferrer");
+    const submitButton = $("#submit-button");
+    submitButton.disabled = !$("#consent").checked;
+    submitButton.setAttribute("aria-disabled", String(submitButton.disabled));
   }
 
   function applyGeo(mode) {
@@ -408,92 +383,18 @@
     $("#form-error").hidden = true;
   }
 
-  function validateForm() {
-    const form = $("#request-form");
-    if (!form.reportValidity()) return false;
-    const digits = $("#client-phone").value.replace(/\D/g, "");
-    if (digits.length !== 11 || !digits.startsWith("7")) {
-      showFormError("Введите телефон полностью: 10 цифр после кода страны +7.");
-      $("#client-phone").focus();
-      return false;
-    }
-    if (!$("#consent").checked) {
-      showFormError("Для отправки заявки необходимо согласие на обработку персональных данных.");
-      return false;
-    }
-    return true;
-  }
-
-  async function submitForm(event) {
+  function submitForm(event) {
     event.preventDefault();
-    if (!validateForm()) return;
+    if (!$("#consent").checked) {
+      showFormError("Подтвердите ознакомление с демонстрационным режимом.");
+      return;
+    }
     const form = $("#request-form");
-    const button = $("#submit-button");
-    const submitLabel = $(".submit-label", button);
-    const loadingLabel = $(".submit-loading", button);
-    const formData = new FormData(form);
-    const payload = Object.fromEntries(formData.entries());
-    payload.consent = $("#consent").checked;
-    payload.deadline = latestDeadline;
-    payload.totalPrice = currentPrice().total;
-    button.disabled = true;
-    button.setAttribute("aria-disabled", "true");
-    button.classList.add("is-loading");
-    submitLabel.hidden = true;
-    loadingLabel.hidden = false;
     $("#form-error").hidden = true;
     $("#form-success").hidden = true;
-
-    const isGithubPages = window.location.hostname.endsWith(".github.io");
-    try {
-      const response = await fetch("send.php", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "Accept": "application/json" },
-        body: JSON.stringify(payload)
-      });
-      if (!response.ok) {
-        if (isGithubPages && (response.status === 404 || response.status === 405)) {
-          showFormSuccess("Демонстрационный режим GitHub Pages: заявка не отправлена. На хостинге с PHP форма передаст обращение Марии.");
-          form.reset();
-          return;
-        }
-        let detail = `Сервер вернул ошибку ${response.status}. Попробуйте позже или подготовьте сообщение в мессенджере.`;
-        try {
-          const errorBody = await response.json();
-          if (errorBody && typeof errorBody.error === "string") detail = errorBody.error;
-        } catch (parseError) {
-          console.warn("Ответ сервера не содержит JSON.", parseError);
-        }
-        throw new Error(detail);
-      }
-      let result;
-      try {
-        result = await response.json();
-      } catch (parseError) {
-        console.error("Сервер ответил данными, которые не удалось разобрать как JSON.", parseError);
-        throw new Error("Сервер вернул некорректный ответ. Попробуйте позже или подготовьте сообщение в мессенджере.");
-      }
-      if (!result || result.ok !== true) throw new Error(typeof result?.error === "string" ? result.error : "Сервер не подтвердил получение заявки.");
-      showFormSuccess("Заявка принята. Мария свяжется с вами по указанному телефону.");
-      form.reset();
-      updateConsentButtons();
-    } catch (error) {
-      const isNetworkError = error instanceof TypeError ||
-        error?.name === "TypeError" ||
-        /failed to fetch|networkerror|load failed/i.test(String(error?.message || ""));
-      if (isGithubPages && isNetworkError) {
-        showFormSuccess("Демонстрационный режим GitHub Pages: заявка не отправлена. На хостинге с PHP форма передаст обращение Марии.");
-      } else if (isNetworkError) {
-        showFormError("Серверный обработчик send.php недоступен (страница открыта локально без PHP-сервера). На хостинге с PHP заявка будет записана в журнал, а сейчас вы можете протестировать отправку готовой карточки в Telegram или WhatsApp.");
-      } else {
-        showFormError(error instanceof Error ? error.message : "Не удалось отправить заявку. Проверьте соединение и попробуйте еще раз.");
-      }
-    } finally {
-      button.classList.remove("is-loading");
-      submitLabel.hidden = false;
-      loadingLabel.hidden = true;
-      updateConsentButtons();
-    }
+    showFormSuccess("Демо-проверка выполнена. Данные не отправлялись, не обрабатывались и не сохранялись.");
+    form.reset();
+    updateConsentButtons();
   }
 
   function setClock() {
@@ -573,6 +474,7 @@
     $(`input[name="workFormat"][value="${state.workFormat}"]`).checked = true;
     $(`input[name="urgency"][value="${state.urgency}"]`).checked = true;
     renderCalculator();
+    updateConsentButtons();
     const receivedDate = $("#received-date");
     if (!receivedDate.value) {
       const initialDate = new Date(getIrkutskDate().getTime() - 5 * 86400000);
@@ -687,9 +589,6 @@
       window.setTimeout(() => $("#client-name").focus({ preventScroll: true }), 500);
     });
     $("#consent").addEventListener("change", updateConsentButtons);
-    $("#copy-dossier-button").addEventListener("click", copyDossier);
-    $("#telegram-button").addEventListener("click", () => openMessenger("telegram"));
-    $("#whatsapp-button").addEventListener("click", () => openMessenger("whatsapp"));
     $("#request-form").addEventListener("submit", submitForm);
     $("#client-phone").addEventListener("input", () => { $("#form-error").hidden = true; });
 
