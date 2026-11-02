@@ -21,6 +21,7 @@
 </head>
 <body id="top">
   <a class="skip-link" href="#main">Перейти к содержанию</a>
+  <aside class="prototype-banner" aria-label="Статус демонстрационного прототипа">Учебный демонстрационный прототип цифрового продукта · Профиль специалиста и примеры сценариев носят иллюстративный характер. На демонстрационном домене GitHub Pages сбор, передача и хранение персональных данных не осуществляются.</aside>
   <header class="site-header">
     <div class="topline">
       <a class="brand" href="#top" aria-label="Мария, частная юридическая практика">
@@ -32,13 +33,13 @@
         <time id="header-clock">--:--</time>
         <span class="connection"><i></i><span>Заявки принимаются</span></span>
       </div>
-      <a class="button button-small button-outline header-cta" href="#request">Срочный разбор <span aria-hidden="true">↗</span></a>
+      <a class="button button-small button-outline header-cta" href="#request">Первичный разбор <span aria-hidden="true">↗</span></a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Открыть меню"><span></span><span></span></button>
     </div>
     <div class="header-bottom">
       <a class="practice-label" href="#services">ГПК · АПК · КАС · КоАП РФ</a>
       <nav class="primary-nav" id="primary-nav" aria-label="Главная навигация">
-        <a href="#deadlines">Сроки</a><a href="#services">Услуги</a><a href="#calculator">Стоимость</a><a href="#about">О юристе</a><a href="#faq">Вопросы</a>
+        <a href="#services">Практика</a><a href="#about">О юристе</a><a href="#cases">Сценарии</a><a href="#deadlines">Сроки</a><a href="#calculator">Стоимость</a><a href="#faq">Вопросы</a>
       </nav>
       <div class="geo-switch" role="group" aria-label="Формат по географии">
         <button type="button" data-geo="irkutsk" aria-pressed="true">Иркутск (очно и суды)</button>
@@ -48,20 +49,27 @@
   </header>
 
   <main id="main">
+
     <section class="hero section-shell" id="hero">
       <div class="hero-copy">
-        <p class="eyebrow"><span class="seal-dot"></span> Иркутск и дистанционно по всей России</p>
-        <h1>Иск и жалоба —<br>с ясным планом действий</h1>
-        <p class="hero-lede">Мария готовит процессуальные документы и помогает пройти судебный путь без догадок о сроках, цене и следующем шаге.</p>
-        <a class="button button-primary hero-cta" href="#calculator">Рассчитать стоимость разбора <span aria-hidden="true">↘</span></a>
+        <p class="eyebrow"><span class="seal-dot"></span> Иркутск — очное сопровождение · Вся Россия — дистанционная подготовка документов</p>
+        <h1>Юридическая помощь по гражданским, арбитражным и административным делам</h1>
+        <p class="hero-lede">Подготовка исков, возражений и жалоб. Разбор документов, предварительная проверка процессуальных сроков и понятный план дальнейших действий.</p>
+        <div class="hero-actions">
+          <a class="button button-primary hero-cta" href="#request">Передать ситуацию на первичный разбор <span aria-hidden="true">↘</span></a>
+          <a class="button button-outline" href="#calculator">Оценить сроки и стоимость</a>
+        </div>
         <div class="hero-proof"><span class="mono">ГПК · АПК · КАС · КоАП</span><span>Работа по договору и конфиденциально</span></div>
         <div class="quick-entry">
           <p class="eyebrow">Что у вас случилось?</p>
           <div class="quick-entry-list">
-            <button type="button" data-scenario="summons"><span>01</span>Пришла повестка или иск</button>
-            <button type="button" data-scenario="order"><span>02</span>Судебный приказ или арест счета</button>
-            <button type="button" data-scenario="traffic"><span>03</span>Постановление ГИБДД или решение суда</button>
+            <button type="button" data-scenario="summons"><span class="scenario-number">01</span><span class="scenario-copy"><strong>Получил судебный иск или повестку</strong><small>Разобрать требования истца, доказательства и срок подачи возражений</small></span></button>
+            <button type="button" data-scenario="order"><span class="scenario-number">02</span><span class="scenario-copy"><strong>Получил судебный приказ</strong><small>Проверить дату вручения, 10-дневный срок и основания для возражений</small></span></button>
+            <button type="button" data-scenario="bailiff"><span class="scenario-number">03</span><span class="scenario-copy"><strong>Арестовали счет или списали деньги приставы</strong><small>Выяснить основание взыскания (приказ, исполнительный лист) и действия ФССП</small></span></button>
+            <button type="button" data-scenario="appeal"><span class="scenario-number">04</span><span class="scenario-copy"><strong>Не согласен с решением суда</strong><small>Проверить дату мотивированного решения, основания и срок обжалования</small></span></button>
+            <button type="button" data-scenario="traffic"><span class="scenario-number">05</span><span class="scenario-copy"><strong>Получил постановление ГИБДД или госоргана</strong><small>Оценить материалы дела, процедуру и срок подачи жалобы по КоАП РФ</small></span></button>
           </div>
+          <p class="quick-entry-note">Одинаковый внешний признак (например, арест счета) может иметь разные правовые основания — выбор сценария задает лишь предварительный ориентир для разбора.</p>
         </div>
       </div>
       <div class="hero-visual">
@@ -71,8 +79,9 @@
         </div>
         <article class="hero-note">
           <span class="case-number">ПРАКТИКА · ИРКУТСК</span>
-          <h2>Сначала разобраться.<br>Затем действовать.</h2>
-          <p>Высшее юридическое образование<br>Конфиденциальность по договору</p>
+          <h2>Мария · Частнопрактикующий юрист</h2>
+          <p>Высшее юридическое образование · Гражданская, арбитражная и административная специализация (ГПК, АПК, КАС, КоАП РФ)</p>
+          <small>В публичном прототипе персональные реквизиты специалиста (фамилия, диплом, ИНН) обезличены и предоставляются при заключении договора</small>
         </article>
         <span class="hero-index mono">ДЕЛО / 01</span>
       </div>
@@ -91,10 +100,123 @@
       <p>Без обещаний результата, который зависит от суда и обстоятельств дела. Только понятные действия в пределах выбранной задачи.</p>
     </section>
 
+    <section class="section-block section-tinted" id="services">
+      <div class="section-shell">
+        <div class="section-heading">
+          <div><p class="eyebrow">Досье · документы и сопровождение</p><h2>Основные направления практики</h2></div>
+          <p>Выберите задачу — калькулятор подставит соответствующий документ. Итог зависит от категории спора и формата участия.</p>
+        </div>
+        <div class="service-filters" role="group" aria-label="Фильтр услуг">
+          <button type="button" class="filter-chip is-active" data-filter="all" aria-pressed="true">Все дела</button>
+          <button type="button" class="filter-chip" data-filter="civil" aria-pressed="false">Гражданские</button>
+          <button type="button" class="filter-chip" data-filter="admin" aria-pressed="false">Административные</button>
+          <button type="button" class="filter-chip" data-filter="appeal" aria-pressed="false">Жалобы</button>
+        </div>
+        <section class="practice-categories" aria-labelledby="practice-categories-title">
+          <div class="subsection-heading"><p class="eyebrow">Профиль практики</p><h3 id="practice-categories-title">Категории дел в рамках специализации</h3></div>
+          <div class="practice-category-grid">
+            <article><h4>Договоры и взыскание задолженности</h4><p>Займы, расписки, подряд, поставка, неосновательное обогащение.</p></article>
+            <article><h4>Семейные и наследственные споры</h4><p>Раздел общего имущества, взыскание алиментов, установление юридических фактов, споры о принятии наследства.</p></article>
+            <article><h4>Жилищные, земельные споры и недвижимость</h4><p>Признание права собственности, порядок пользования жильем, споры по ДДУ и границам участков.</p></article>
+            <article><h4>Защита прав потребителей</h4><p>Отказ от некачественных товаров и услуг, взыскание неустойки и штрафа по ЗоЗПП.</p></article>
+            <article><h4>Административные дела и автоправо</h4><p>Обжалование постановлений ГИБДД и должностных лиц по КоАП РФ, споры при ДТП и ОСАГО.</p></article>
+            <article><h4>Исполнительное производство и Арбитраж</h4><p>Оспаривание постановлений и бездействия приставов по КАС РФ; экономические споры ИП и юрлиц по АПК РФ.</p></article>
+          </div>
+        </section>
+        <div class="service-grid">
+          <article class="service-card" data-category="civil"><span class="case-number">ДЕЛО № 01</span><p class="service-code">ГПК РФ · СТ. 128, 129</p><h3>Отмена судебного приказа</h3><p>Подготовка возражений, чтобы заявить позицию по приказному взысканию и проверить процессуальные сроки.</p><ul class="service-includes"><li>Проверка даты вручения и оснований для восстановления пропущенного срока по ст. 112 ГПК РФ.</li><li>Мотивированные возражения относительно исполнения судебного приказа.</li><li>Заявление о повороте исполнения по ст. 443 ГПК РФ, если списание уже произошло.</li></ul><div class="service-meta"><span>Ориентир от 3 000 ₽</span><span aria-hidden="true">·</span><span>Срок: 10 дней*</span></div><button type="button" class="text-button" data-select-doc="order_cancel">Выбрать документ <span>↗</span></button></article>
+          <article class="service-card" data-category="admin"><span class="case-number">ДЕЛО № 02</span><p class="service-code">КоАП РФ · СТ. 30.1–30.3</p><h3>Жалоба на постановление</h3><p>Разбор постановления ГИБДД или административного органа и подготовка документа для его обжалования.</p><ul class="service-includes"><li>Проверка материалов дела на процессуальные нарушения.</li><li>Жалоба в вышестоящий орган или суд с ходатайствами об истребовании доказательств.</li><li>Ходатайство о восстановлении срока при позднем получении копии постановления.</li></ul><div class="service-meta"><span>Ориентир от 5 000 ₽</span><span aria-hidden="true">·</span><span>Срок: 10 дней*</span></div><button type="button" class="text-button" data-select-doc="koap_kas">Выбрать документ <span>↗</span></button></article>
+          <article class="service-card" data-category="civil"><span class="case-number">ДЕЛО № 03</span><p class="service-code">ГПК РФ · СТ. 131–132 / АПК РФ · СТ. 125–126</p><h3>Исковое заявление</h3><p>Структурированное изложение требований, обстоятельств и доказательств с учетом правил выбранного вида судопроизводства.</p><ul class="service-includes"><li>Определение подсудности и проверка соблюдения досудебного порядка.</li><li>Расчет цены иска, неустойки или процентов по ст. 395 ГК РФ и госпошлины по НК РФ.</li><li>Текст иска с описью приложений и письменной инструкцией по подаче.</li></ul><div class="service-meta"><span>Ориентир от 7 000 ₽</span><span aria-hidden="true">·</span><span>Срок: по обстоятельствам</span></div><button type="button" class="text-button" data-select-doc="claim">Выбрать документ <span>↗</span></button></article>
+          <article class="service-card" data-category="civil"><span class="case-number">ДЕЛО № 04</span><p class="service-code">ГПК РФ · СТ. 149 / АПК РФ · СТ. 131</p><h3>Возражение или отзыв на иск</h3><p>Письменная позиция ответчика с разбором каждого требования и расчетом спорных сумм.</p><ul class="service-includes"><li>Попунктный разбор доводов истца и представленных доказательств.</li><li>Контррасчет, доводы о снижении неустойки по ст. 333 ГК РФ или о сроке давности по ст. 199 ГК РФ.</li><li>Встречный иск или ходатайства для суда при наличии правовых оснований.</li></ul><div class="service-meta"><span>Ориентир от 7 000 ₽</span><span aria-hidden="true">·</span><span>Срок: по обстоятельствам</span></div><button type="button" class="text-button" data-select-doc="objection">Выбрать документ <span>↗</span></button></article>
+          <article class="service-card" data-category="appeal"><span class="case-number">ДЕЛО № 05</span><p class="service-code">ГПК РФ · ГЛ. 39, 41 / АПК РФ</p><h3>Апелляционная или кассационная жалоба</h3><p>Проверка судебного акта и формирование доводов для инстанционного пересмотра.</p><ul class="service-includes"><li>Анализ мотивированного решения суда и протоколов заседаний.</li><li>Описание нарушений материального и процессуального права, включая основания по ст. 330 ГПК РФ.</li><li>Жалоба с расчетом пошлины и порядком направления копий сторонам.</li></ul><div class="service-meta"><span>Ориентир от 10 000 ₽</span><span aria-hidden="true">·</span><span>Срок: зависит от акта</span></div><button type="button" class="text-button" data-select-doc="appeal">Выбрать документ <span>↗</span></button></article>
+          <article class="service-card" data-category="admin"><span class="case-number">ДЕЛО № 06</span><p class="service-code">КАС РФ · ГЛ. 22 / ФЗ № 229-ФЗ</p><h3>Спор с судебным приставом</h3><p>Подготовка правовой позиции по постановлению, действию или бездействию пристава ФССП.</p><ul class="service-includes"><li>Правовая оценка документов исполнительного производства и действий пристава.</li><li>Административный иск по ст. 218–220 КАС РФ или жалоба в порядке подчиненности.</li><li>Требования о снятии арестов, сохранении прожиточного минимума или проверке расчетов.</li></ul><div class="service-meta"><span>Ориентир от 5 000 ₽</span><span aria-hidden="true">·</span><span>Срок: 10 дней*</span></div><button type="button" class="text-button" data-select-doc="koap_kas">Выбрать документ <span>↗</span></button></article>
+        </div>
+        <section class="pricing-boundaries" aria-labelledby="pricing-boundaries-title">
+          <div class="subsection-heading"><p class="eyebrow">Стоимость и объем поручения</p><h3 id="pricing-boundaries-title">Что входит в стоимость подготовки документа и где границы услуги</h3></div>
+          <div class="pricing-boundary-grid">
+            <article><h4>Что входит в базовую стоимость</h4><p>Изучение переданных материалов, правовая оценка ситуации, разработка проекта документа с расчетом требований, одна итерация правок при согласовании и письменная инструкция по подаче.</p></article>
+            <article><h4>Что не входит (оплачивается отдельно)</h4><p>Государственная пошлина в суд, почтовые и нотариальные расходы, сбор платных справок и экспертиз, личное участие в заседаниях и сопровождение в следующих инстанциях.</p></article>
+            <article><h4>Что влияет на итоговую цену</h4><p>Объем материалов дела (количество томов/договоров), число самостоятельных требований или эпизодов, необходимость встречного иска либо сложного многопериодного расчета.</p></article>
+          </div>
+        </section>
+        <p class="fine-print">* Указаны общие ориентиры. Точный вид документа, порядок и срок обжалования следует сверить с полученным актом.</p>
+        <div class="formats-block">
+          <div class="formats-copy"><p class="eyebrow">Три формата работы</p><h3>Вы выбираете объем участия</h3>
+            <ol class="format-list">
+              <li><span class="format-index">I</span><div><strong>Документ и инструкция</strong><p>Подготовка документа и письменный порядок дальнейшей подачи.</p></div></li>
+              <li><span class="format-index">II</span><div><strong>Документ и дистанционная подача</strong><p>Электронная подача через ГАС «Правосудие», «Мой Арбитр» или Госуслуги выполняется либо из подтвержденной учетной записи самого заявителя по подготовленному юристом комплекту и под его пошаговым контролем, либо юристом как представителем при наличии оформленной доверенности и УКЭП там, где этого требует процессуальный кодекс. Подача документа сама по себе не означает автоматического представительства во всех последующих заседаниях.</p></div></li>
+              <li><span class="format-index">III</span><div><strong>Под ключ в Иркутске</strong><p>Документы и личное участие Марии в судебном заседании в пределах доступной юрисдикции.</p></div></li>
+            </ol>
+          </div>
+          <div class="photo-frame formats-photo"><img src="images/dossier-flatlay.jpg" alt="Документы дела и кодексы на рабочем столе" width="1280" height="853" loading="lazy"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-block section-tinted" id="about">
+      <div class="section-shell about-layout">
+        <div class="photo-frame about-photo"><img src="images/about-maria-work.jpg" alt="Мария изучает материалы судебного дела за рабочим столом" width="1280" height="853" loading="lazy"></div>
+        <div class="about-copy">
+          <p class="eyebrow">О юристе</p><h2>Мария — частнопрактикующий юрист</h2>
+          <p>Работа начинается с документов и вопроса, который нужно решить. Я объясняю, какие факты важны, какой формат участия подходит и что потребуется для подготовки.</p>
+          <p>Практика охватывает гражданские, семейные, наследственные, жилищные, земельные, арбитражные и административные вопросы. Уголовные дела не веду.</p>
+          <section class="trust-credentials" aria-labelledby="trust-credentials-title">
+            <h3 id="trust-credentials-title">Основания для профессионального доверия</h3>
+            <ul>
+              <li>Высшее юридическое образование.</li>
+              <li>Профильная специализация: ГПК, АПК, КАС и КоАП РФ.</li>
+              <li>Предварительная оценка судебной перспективы до заключения договора. Если правовых оснований для иска или жалобы нет, Мария сообщает об этом на старте.</li>
+              <li>Письменный договор с фиксированным объемом поручения.</li>
+              <li>Режим конфиденциальности передаваемых документов.</li>
+            </ul>
+          </section>
+          <aside class="expense-note">
+            <span class="case-number">ПАМЯТКА · СУДЕБНЫЕ РАСХОДЫ</span>
+            <h3>Возмещение расходов на представителя</h3>
+            <p class="expense-statutes">Ст. 98, 100 ГПК РФ · ст. 110 АПК РФ · ст. 112 КАС РФ</p>
+            <p>Работа оформляется письменным договором, а оплату подтверждают платежные документы. Сторона, в пользу которой состоялось решение суда, вправе заявить о возмещении судебных расходов, включая оплату услуг представителя и подготовку документов. Взыскание возможно в разумных пределах, которые определяет суд с учетом обстоятельств дела; результат заранее не гарантируется.</p>
+          </aside>
+          <div class="about-signature"><span class="signature-mark">М</span><span>Мария<br><small>Частная юридическая практика</small></span></div>
+        </div>
+      </div>
+      <div class="section-shell work-steps">
+        <div class="work-steps-heading"><p class="eyebrow">Понятный порядок работы</p><h3>От первого документа до подачи</h3></div>
+        <ol class="work-steps-list">
+          <li><span class="work-step-number">ШАГ 01</span><div><h4>Документы и срок</h4><p>Вы присылаете фото полученного акта или описываете спор. Проверяем крайний процессуальный срок.</p></div></li>
+          <li><span class="work-step-number">ШАГ 02</span><div><h4>Разбор и договор</h4><p>Определяем нужный документ, фиксируем точный объем работы и стоимость в договоре до начала подготовки.</p></div></li>
+          <li><span class="work-step-number">ШАГ 03</span><div><h4>Разработка позиции</h4><p>Готовлю проект документа, расчет требований или контррасчет и опись приложений, затем согласую текст с вами.</p></div></li>
+          <li><span class="work-step-number">ШАГ 04</span><div><h4>Подача или суд</h4><p>Передаю пакет с инструкцией по подаче, направляю электронно через ГАС «Правосудие» или «Мой Арбитр» либо представляю интересы в суде г. Иркутска.</p></div></li>
+        </ol>
+        <aside class="post-request-info" aria-labelledby="post-request-title">
+          <p class="eyebrow">После обращения</p>
+          <h3 id="post-request-title">Что происходит сразу после отправки заявки?</h3>
+          <ol>
+            <li><strong>Срок связи</strong><span>Ответ в рабочие часы по Иркутску (09:00–19:00 UTC+8) обычно в течение 1–2 часов выбранным способом.</span></li>
+            <li><strong>Первичное ознакомление (бесплатно)</strong><span>Мария уточняет базовые факты, дату получения судебного акта и проверяет, относится ли вопрос к её специализации.</span></li>
+            <li><strong>Предложение по работе</strong><span>Вы получаете ответ, какой документ или формат участия возможен, какие материалы нужно доснять и какова точная стоимость по договору.</span></li>
+            <li><strong>Принятие решения</strong><span>Вы спокойно решаете, заключать ли письменный договор; само первичное обращение ни к чему вас не обязывает.</span></li>
+          </ol>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section-shell section-block" id="cases">
+      <div class="section-heading">
+        <div><p class="eyebrow">Условные модели задач</p><h2>Типовые процессуальные сценарии</h2></div>
+        <p>Это типовые процессуальные сценарии, а не описание конкретных дел или обещание судебного результата. Состав работы и дальнейшая задача зависят от документов и обстоятельств.</p>
+      </div>
+      <div class="case-grid">
+        <article class="case-card"><span class="case-number">СЦЕНАРИЙ · 01</span><p class="case-code">СУДЕБНЫЙ ПРИКАЗ · СТ. 128, 129, 443 ГПК РФ</p><h3>Удержание средств по приказу, полученному с опозданием</h3><p><strong>Типовая ситуация</strong> — об аресте счета или удержании узнают после начала исполнения приказа, а обычный срок подачи возражений, возможно, истек.</p><p><strong>Что делает Мария</strong> — проверяет дату вручения по почтовому идентификатору и готовит возражения с ходатайством о восстановлении срока по ст. 112 ГПК РФ. Если приказ уже исполнен, оценивает основания для заявления о повороте исполнения.</p><p><strong>Процессуальная задача документа</strong> — поставить перед мировым судьей вопрос об отмене приказа и дальнейшем рассмотрении спора в исковом порядке; при наличии оснований — о возврате взысканного.</p><p><strong>Документы для старта</strong> — полный текст судебного приказа, конверт или отчет отслеживания вручения, постановление пристава и выписка банка об удержании.</p><p><strong>Что может изменить стратегию</strong> — способ и дата вручения копии, наличие подтвержденных уважительных причин пропуска и то, исполнен ли приказ полностью.</p><p><strong>Граница ответственности</strong> — восстановление срока, отмену приказа и поворот исполнения решает суд; исход зависит от доказательств и процессуальных условий.</p></article>
+        <article class="case-card"><span class="case-number">СЦЕНАРИЙ · 02</span><p class="case-code">ДОГОВОРНЫЙ СПОР · СТ. 149 ГПК РФ, СТ. 333 ГК РФ</p><h3>Иск по договору или расписке с расчетом неустойки</h3><p><strong>Типовая ситуация</strong> — в иске заявлены долг, неустойка или штрафы, а расчет и основания начислений требуют проверки.</p><p><strong>Что делает Мария</strong> — сопоставляет договор, первичные документы и платежи, проверяет периоды начисления и готовит письменный отзыв с контррасчетом и доводами о возможном снижении несоразмерной неустойки.</p><p><strong>Процессуальная задача документа</strong> — предметно возразить против неподтвержденных требований и представить суду расчет ответчика. Оценка доводов и суммы относится к компетенции суда.</p><p><strong>Документы для старта</strong> — иск со всеми приложениями, договор и дополнительные соглашения, подписанные акты, платежные документы и расчет истца.</p><p><strong>Что может изменить стратегию</strong> — наличие подписанных актов, условия о неустойке, даты и назначение платежей, а также заявленные периоды начисления.</p><p><strong>Граница ответственности</strong> — относимость и достаточность доказательств, а также размер снижения неустойки по ст. 333 ГК РФ определяет суд.</p></article>
+        <article class="case-card"><span class="case-number">СЦЕНАРИЙ · 03</span><p class="case-code">ИСПОЛНИТЕЛЬНОЕ ПРОИЗВОДСТВО · ГЛ. 22 КАС РФ</p><h3>Арест счета, удержания или отсутствие ответа пристава</h3><p><strong>Типовая ситуация</strong> — арест не снят, удержания требуют проверки или обращение к приставу осталось без ответа.</p><p><strong>Что делает Мария</strong> — изучает материалы исполнительного производства и готовит жалобу либо административный иск по ст. 218–220 КАС РФ. При наличии оснований формулирует ходатайство о сохранении прожиточного минимума с учетом ст. 446 ГПК РФ.</p><p><strong>Процессуальная задача документа</strong> — оспорить конкретное постановление, действие или бездействие должностного лица в предусмотренном законом порядке.</p><p><strong>Документы для старта</strong> — постановление о возбуждении исполнительного производства, оспариваемый акт пристава, ответ на обращение и выписка банка о взыскании.</p><p><strong>Что может изменить стратегию</strong> — основание взыскания (судебный приказ или исполнительный лист), дата получения постановления, соблюдение срока и содержание ответа ФССП.</p><p><strong>Граница ответственности</strong> — законность действий, снятие ареста и выбранный способ защиты оценивает суд либо вышестоящее должностное лицо в пределах своих полномочий.</p></article>
+        <article class="case-card"><span class="case-number">СЦЕНАРИЙ · 04</span><p class="case-code">ОБЖАЛОВАНИЕ · ГЛ. 39 ГПК РФ / ГЛ. 34 АПК РФ</p><h3>Несогласие с решением суда первой инстанции</h3><p><strong>Типовая ситуация</strong> — сторона считает, что выводы по гражданскому, семейному, жилищному или наследственному спору не учитывают значимые обстоятельства либо доказательства.</p><p><strong>Что делает Мария</strong> — анализирует мотивированное решение и протокол заседания, проверяет доводы на соответствие основаниям ст. 330 ГПК РФ и готовит апелляционную жалобу.</p><p><strong>Процессуальная задача документа</strong> — передать спор на проверку апелляционной инстанции, соблюдая срок, форму жалобы и правила направления копий. Итог пересмотра заранее не гарантируется.</p><p><strong>Документы для старта</strong> — полный текст мотивированного решения, протокол или аудиозапись заседания, ранее поданные заявления и подтверждение даты получения решения.</p><p><strong>Что может изменить стратегию</strong> — дата изготовления мотивированного решения, пропуск срока, ранее заявленные ходатайства и наличие новых допустимых доказательств.</p><p><strong>Граница ответственности</strong> — оценку доказательств, наличие оснований для изменения или отмены решения и восстановление срока принимает исключительно суд.</p></article>
+      </div>
+    </section>
+
     <section class="section-shell section-block" id="deadlines">
       <div class="section-heading">
-        <div><p class="eyebrow">Интерактивный узел № 1</p><h2>Радар процессуальных сроков</h2></div>
-        <p>Введите дату, когда получили документ. Калькулятор показывает ориентир по сроку и учитывает перенос выходного дня.</p>
+        <div><p class="eyebrow">Интерактивный инструмент № 1</p><h2>Предварительная проверка процессуальных сроков</h2></div>
+        <p>Справочный инструмент для первичной оценки риска пропуска срока. Не заменяет проверку материалов дела специалистом.</p>
       </div>
       <div class="deadline-layout">
         <div class="deadline-form paper-card">
@@ -105,6 +227,7 @@
             <option value="bailiff">Постановление или действие пристава · 10 дней</option>
             <option value="appeal">Решение суда первой инстанции · 1 месяц</option>
             <option value="private">Определение суда · частная жалоба · 15 дней</option>
+            <option value="apk_days">Определение или приказ арбитражного суда (АПК РФ) · 10 рабочих дней</option>
           </select>
           <label class="field-label" for="received-date">Дата вручения документа</label>
           <input id="received-date" type="date">
@@ -117,8 +240,8 @@
         </div>
         <aside class="deadline-aside">
           <div class="statute-note">
-            <span class="mono">СТ. 108 ГПК РФ</span>
-            <p>Если последний день выпадает на субботу или воскресенье, крайний срок переносится на ближайший рабочий понедельник.</p>
+            <span class="mono">СТ. 107–108 ГПК РФ · СТ. 113–114 АПК РФ</span>
+            <p>Течение срока начинается на следующий день после календарной даты вручения или события. Если последний день срока приходится на нерабочий день (выходной или официальный нерабочий праздничный день РФ), днем окончания срока считается ближайший следующий за ним рабочий день. В арбитражном процессе (ч. 3 ст. 113 АПК РФ) сроки в днях исчисляются только в рабочих днях.</p>
           </div>
           <div class="profile-filter">
             <p class="eyebrow">Фильтр профиля</p>
@@ -130,44 +253,10 @@
       </div>
     </section>
 
-    <section class="section-block section-tinted" id="services">
-      <div class="section-shell">
-        <div class="section-heading">
-          <div><p class="eyebrow">Досье · документы и сопровождение</p><h2>Что я готовлю</h2></div>
-          <p>Выберите задачу — калькулятор подставит соответствующий документ. Итог зависит от категории спора и формата участия.</p>
-        </div>
-        <div class="service-filters" role="group" aria-label="Фильтр услуг">
-          <button type="button" class="filter-chip is-active" data-filter="all" aria-pressed="true">Все дела</button>
-          <button type="button" class="filter-chip" data-filter="civil" aria-pressed="false">Гражданские</button>
-          <button type="button" class="filter-chip" data-filter="admin" aria-pressed="false">Административные</button>
-          <button type="button" class="filter-chip" data-filter="appeal" aria-pressed="false">Жалобы</button>
-        </div>
-        <div class="service-grid">
-          <article class="service-card" data-category="civil"><span class="case-number">ДЕЛО № 01</span><p class="service-code">ГПК РФ · СТ. 128, 129</p><h3>Отмена судебного приказа</h3><p>Подготовка возражений, чтобы заявить позицию по приказному взысканию и проверить процессуальные сроки.</p><ul class="service-includes"><li>Проверка даты вручения и оснований для восстановления пропущенного срока по ст. 112 ГПК РФ.</li><li>Мотивированные возражения относительно исполнения судебного приказа.</li><li>Заявление о повороте исполнения по ст. 443 ГПК РФ, если списание уже произошло.</li></ul><div class="service-meta"><span>Ориентир от 3 000 ₽</span><span>10 дней*</span></div><button type="button" class="text-button" data-select-doc="order_cancel">Выбрать документ <span>↗</span></button></article>
-          <article class="service-card" data-category="admin"><span class="case-number">ДЕЛО № 02</span><p class="service-code">КоАП РФ · СТ. 30.1–30.3</p><h3>Жалоба на постановление</h3><p>Разбор постановления ГИБДД или административного органа и подготовка документа для его обжалования.</p><ul class="service-includes"><li>Проверка материалов дела на процессуальные нарушения.</li><li>Жалоба в вышестоящий орган или суд с ходатайствами об истребовании доказательств.</li><li>Ходатайство о восстановлении срока при позднем получении копии постановления.</li></ul><div class="service-meta"><span>Ориентир от 5 000 ₽</span><span>10 дней*</span></div><button type="button" class="text-button" data-select-doc="koap_kas">Выбрать документ <span>↗</span></button></article>
-          <article class="service-card" data-category="civil"><span class="case-number">ДЕЛО № 03</span><p class="service-code">ГПК РФ · СТ. 131–132 / АПК РФ · СТ. 125–126</p><h3>Исковое заявление</h3><p>Структурированное изложение требований, обстоятельств и доказательств с учетом правил выбранного вида судопроизводства.</p><ul class="service-includes"><li>Определение подсудности и проверка соблюдения досудебного порядка.</li><li>Расчет цены иска, неустойки или процентов по ст. 395 ГК РФ и госпошлины по НК РФ.</li><li>Текст иска с описью приложений и письменной инструкцией по подаче.</li></ul><div class="service-meta"><span>Ориентир от 7 000 ₽</span><span>По обстоятельствам</span></div><button type="button" class="text-button" data-select-doc="claim">Выбрать документ <span>↗</span></button></article>
-          <article class="service-card" data-category="civil"><span class="case-number">ДЕЛО № 04</span><p class="service-code">ГПК РФ · СТ. 149 / АПК РФ · СТ. 131</p><h3>Возражение или отзыв на иск</h3><p>Письменная позиция ответчика с разбором каждого требования и расчетом спорных сумм.</p><ul class="service-includes"><li>Попунктный разбор доводов истца и представленных доказательств.</li><li>Контррасчет, доводы о снижении неустойки по ст. 333 ГК РФ или о сроке давности по ст. 199 ГК РФ.</li><li>Встречный иск или ходатайства для суда при наличии правовых оснований.</li></ul><div class="service-meta"><span>Ориентир от 7 000 ₽</span><span>По обстоятельствам</span></div><button type="button" class="text-button" data-select-doc="objection">Выбрать документ <span>↗</span></button></article>
-          <article class="service-card" data-category="appeal"><span class="case-number">ДЕЛО № 05</span><p class="service-code">ГПК РФ · ГЛ. 39, 41 / АПК РФ</p><h3>Апелляционная или кассационная жалоба</h3><p>Проверка судебного акта и формирование доводов для инстанционного пересмотра.</p><ul class="service-includes"><li>Анализ мотивированного решения суда и протоколов заседаний.</li><li>Описание нарушений материального и процессуального права, включая основания по ст. 330 ГПК РФ.</li><li>Жалоба с расчетом пошлины и порядком направления копий сторонам.</li></ul><div class="service-meta"><span>Ориентир от 10 000 ₽</span><span>Срок зависит от акта</span></div><button type="button" class="text-button" data-select-doc="appeal">Выбрать документ <span>↗</span></button></article>
-          <article class="service-card" data-category="admin"><span class="case-number">ДЕЛО № 06</span><p class="service-code">КАС РФ · ГЛ. 22 / ФЗ № 229-ФЗ</p><h3>Спор с судебным приставом</h3><p>Подготовка правовой позиции по постановлению, действию или бездействию пристава ФССП.</p><ul class="service-includes"><li>Правовая оценка документов исполнительного производства и действий пристава.</li><li>Административный иск по ст. 218–220 КАС РФ или жалоба в порядке подчиненности.</li><li>Требования о снятии арестов, сохранении прожиточного минимума или проверке расчетов.</li></ul><div class="service-meta"><span>Ориентир от 5 000 ₽</span><span>10 дней*</span></div><button type="button" class="text-button" data-select-doc="koap_kas">Выбрать документ <span>↗</span></button></article>
-        </div>
-        <p class="fine-print">* Указаны общие ориентиры. Точный вид документа, порядок и срок обжалования следует сверить с полученным актом.</p>
-        <div class="formats-block">
-          <div class="formats-copy"><p class="eyebrow">Три формата работы</p><h3>Вы выбираете объем участия</h3>
-            <ol class="format-list">
-              <li><span class="format-index">I</span><div><strong>Документ и инструкция</strong><p>Подготовка документа и письменный порядок дальнейшей подачи.</p></div></li>
-              <li><span class="format-index">II</span><div><strong>Документ и дистанционная подача</strong><p>Подача через ГАС «Правосудие», «Мой Арбитр» или по делу ФССП.</p></div></li>
-              <li><span class="format-index">III</span><div><strong>Под ключ в Иркутске</strong><p>Документы и личное участие Марии в судебном заседании в пределах доступной юрисдикции.</p></div></li>
-            </ol>
-          </div>
-          <div class="photo-frame formats-photo"><img src="images/dossier-flatlay.jpg" alt="Документы дела и кодексы на рабочем столе" width="1280" height="853" loading="lazy"></div>
-        </div>
-      </div>
-    </section>
-
     <section class="section-shell section-block" id="calculator">
       <div class="section-heading">
-        <div><p class="eyebrow">Интерактивный узел № 2</p><h2>Мастер ситуации</h2></div>
-        <p>Выберите параметры, чтобы увидеть ориентир стоимости и список материалов для первого разбора.</p>
+        <div><p class="eyebrow">Интерактивный инструмент № 2</p><h2>Мастер ситуации и ориентир стоимости</h2></div>
+        <p>Мастер определяет предварительный ориентир базовой стоимости и помогает сформировать перечень документов для старта. Два дела одной категории могут существенно отличаться по объему материалов и правовой сложности, поэтому окончательная стоимость определяется после ознакомления с документами до заключения договора.</p>
       </div>
       <div class="calculator-layout">
         <div class="calculator-fields paper-card">
@@ -197,12 +286,12 @@
         </div>
         <aside class="dossier-card" aria-live="polite">
           <div class="dossier-card-head"><span class="case-number">КАРТОЧКА ДОСЬЕ ДЕЛА</span><span class="dossier-seal">М</span></div>
-          <p class="eyebrow">Расчетная стоимость</p><p class="price-line">от <strong id="total-price">3 000</strong> ₽</p>
+          <p class="eyebrow">Предварительный ориентир базовой стоимости</p><p class="price-line">от <strong id="total-price">3 000</strong> ₽</p>
           <div class="price-breakdown" id="price-breakdown"></div>
           <div class="priority-line"><span>Приоритет</span><strong id="priority-status">Штатный режим</strong></div>
           <div class="checklist-block"><p class="eyebrow">Что сфотографировать для старта разбора</p><ul id="photo-checklist"></ul></div>
           <button class="button button-primary button-wide" type="button" id="transfer-dossier">Передать досье в заявку <span aria-hidden="true">↘</span></button>
-          <p class="fine-print">Предварительный расчет не является публичной офертой. Объем и стоимость подтверждаются после изучения материалов.</p>
+          <p class="fine-print">Это предварительный ориентир базовой стоимости и список документов для старта, а не окончательная цена. Даже дела одной категории различаются объемом материалов и правовой сложностью. Мария определяет точную стоимость после ознакомления с документами и до заключения письменного договора.</p>
         </aside>
       </div>
     </section>
@@ -233,50 +322,11 @@
       </div>
     </section>
 
-    <section class="section-shell section-block" id="cases">
-      <div class="section-heading">
-        <div><p class="eyebrow">Условные модели задач</p><h2>Примеры правовых разборов и решений</h2></div>
-        <p>Это типовые процессуальные сценарии, а не описание конкретных дел или обещание судебного результата. Состав работы и дальнейшая задача зависят от документов и обстоятельств.</p>
-      </div>
-      <div class="case-grid">
-        <article class="case-card"><span class="case-number">СЦЕНАРИЙ · 01</span><p class="case-code">СУДЕБНЫЙ ПРИКАЗ · СТ. 128, 129, 443 ГПК РФ</p><h3>Удержание средств по приказу, полученному с опозданием</h3><p><strong>Типовая ситуация</strong> — об аресте счета или удержании узнают после начала исполнения приказа, а обычный срок подачи возражений, возможно, истек.</p><p><strong>Что делает Мария</strong> — проверяет дату вручения по почтовому идентификатору и готовит возражения с ходатайством о восстановлении срока по ст. 112 ГПК РФ. Если приказ уже исполнен, оценивает основания для заявления о повороте исполнения.</p><p><strong>Процессуальная задача документа</strong> — поставить перед мировым судьей вопрос об отмене приказа и дальнейшем рассмотрении спора в исковом порядке; при наличии оснований — о возврате взысканного.</p></article>
-        <article class="case-card"><span class="case-number">СЦЕНАРИЙ · 02</span><p class="case-code">ДОГОВОРНЫЙ СПОР · СТ. 149 ГПК РФ, СТ. 333 ГК РФ</p><h3>Иск по договору или расписке с расчетом неустойки</h3><p><strong>Типовая ситуация</strong> — в иске заявлены долг, неустойка или штрафы, а расчет и основания начислений требуют проверки.</p><p><strong>Что делает Мария</strong> — сопоставляет договор, первичные документы и платежи, проверяет периоды начисления и готовит письменный отзыв с контррасчетом и доводами о возможном снижении несоразмерной неустойки.</p><p><strong>Процессуальная задача документа</strong> — предметно возразить против неподтвержденных требований и представить суду расчет ответчика. Оценка доводов и суммы относится к компетенции суда.</p></article>
-        <article class="case-card"><span class="case-number">СЦЕНАРИЙ · 03</span><p class="case-code">ИСПОЛНИТЕЛЬНОЕ ПРОИЗВОДСТВО · ГЛ. 22 КАС РФ</p><h3>Арест счета, удержания или отсутствие ответа пристава</h3><p><strong>Типовая ситуация</strong> — арест не снят, удержания требуют проверки или обращение к приставу осталось без ответа.</p><p><strong>Что делает Мария</strong> — изучает материалы исполнительного производства и готовит жалобу либо административный иск по ст. 218–220 КАС РФ. При наличии оснований формулирует ходатайство о сохранении прожиточного минимума с учетом ст. 446 ГПК РФ.</p><p><strong>Процессуальная задача документа</strong> — оспорить конкретное постановление, действие или бездействие должностного лица в предусмотренном законом порядке.</p></article>
-        <article class="case-card"><span class="case-number">СЦЕНАРИЙ · 04</span><p class="case-code">ОБЖАЛОВАНИЕ · ГЛ. 39 ГПК РФ / ГЛ. 34 АПК РФ</p><h3>Несогласие с решением суда первой инстанции</h3><p><strong>Типовая ситуация</strong> — сторона считает, что выводы по гражданскому, семейному, жилищному или наследственному спору не учитывают значимые обстоятельства либо доказательства.</p><p><strong>Что делает Мария</strong> — анализирует мотивированное решение и протокол заседания, проверяет доводы на соответствие основаниям ст. 330 ГПК РФ и готовит апелляционную жалобу.</p><p><strong>Процессуальная задача документа</strong> — передать спор на проверку апелляционной инстанции, соблюдая срок, форму жалобы и правила направления копий. Итог пересмотра заранее не гарантируется.</p></article>
-      </div>
-    </section>
-
-    <section class="section-block section-tinted" id="about">
-      <div class="section-shell about-layout">
-        <div class="photo-frame about-photo"><img src="images/about-maria-work.jpg" alt="Мария изучает материалы судебного дела за рабочим столом" width="1280" height="853" loading="lazy"></div>
-        <div class="about-copy">
-          <p class="eyebrow">О юристе</p><h2>Мария — частнопрактикующий юрист</h2>
-          <p>Работа начинается с документов и вопроса, который нужно решить. Я объясняю, какие факты важны, какой формат участия подходит и что потребуется для подготовки.</p>
-          <p>Практика охватывает гражданские, семейные, наследственные, жилищные, земельные, арбитражные и административные вопросы. Уголовные дела не веду.</p>
-          <aside class="expense-note">
-            <span class="case-number">ПАМЯТКА · СУДЕБНЫЕ РАСХОДЫ</span>
-            <h3>Возмещение расходов на представителя</h3>
-            <p class="expense-statutes">Ст. 98, 100 ГПК РФ · ст. 110 АПК РФ · ст. 112 КАС РФ</p>
-            <p>Работа оформляется письменным договором, а оплату подтверждают платежные документы. Сторона, в пользу которой состоялось решение суда, вправе заявить о возмещении судебных расходов, включая оплату услуг представителя и подготовку документов. Взыскание возможно в разумных пределах, которые определяет суд с учетом обстоятельств дела; результат заранее не гарантируется.</p>
-          </aside>
-          <div class="about-signature"><span class="signature-mark">М</span><span>Мария<br><small>Частная юридическая практика</small></span></div>
-        </div>
-      </div>
-      <div class="section-shell work-steps">
-        <div class="work-steps-heading"><p class="eyebrow">Понятный порядок работы</p><h3>От первого документа до подачи</h3></div>
-        <ol class="work-steps-list">
-          <li><span class="work-step-number">ШАГ 01</span><div><h4>Документы и срок</h4><p>Вы присылаете фото полученного акта или описываете спор. Проверяем крайний процессуальный срок.</p></div></li>
-          <li><span class="work-step-number">ШАГ 02</span><div><h4>Разбор и договор</h4><p>Определяем нужный документ, фиксируем точный объем работы и стоимость в договоре до начала подготовки.</p></div></li>
-          <li><span class="work-step-number">ШАГ 03</span><div><h4>Разработка позиции</h4><p>Готовлю проект документа, расчет требований или контррасчет и опись приложений, затем согласую текст с вами.</p></div></li>
-          <li><span class="work-step-number">ШАГ 04</span><div><h4>Подача или суд</h4><p>Передаю пакет с инструкцией по подаче, направляю электронно через ГАС «Правосудие» или «Мой Арбитр» либо представляю интересы в суде г. Иркутска.</p></div></li>
-        </ol>
-      </div>
-    </section>
-
     <section class="section-shell section-block" id="geography">
-      <div class="section-heading"><div><p class="eyebrow">Иркутск · вся Россия</p><h2>Работаю там, где рассматривают ваше дело</h2></div><p class="geo-copy" data-geo-content="irkutsk">Очные встречи и судебное участие согласуются для Иркутска и Иркутского района.</p><p class="geo-copy" data-geo-content="russia" hidden>Дистанционная подготовка документов и подача доступны по всей России, если это допускают обстоятельства дела.</p></div>
+      <div class="section-heading"><div><p class="eyebrow">Иркутск · вся Россия</p><h2>География работы: Иркутск и дистанционный формат по РФ</h2></div><p class="geo-copy" data-geo-content="irkutsk">Очное сопровождение возможно в Иркутске и Иркутском районе. Встречи, подготовка документов и участие в суде согласуются с учетом суда и задачи.</p><p class="geo-copy" data-geo-content="russia" hidden>Дистанционная подготовка документов и сопровождение доступны по РФ в подходящих категориях дел. Порядок подачи зависит от суда и вида производства.</p></div>
       <div class="geography-layout">
-        <div class="court-directory"><p class="eyebrow">Суды Иркутска и области</p>
+        <div class="court-directory">
+          <details class="court-details" open><summary>Справочный перечень судов Иркутска и области</summary>
           <ul>
             <li><strong>Иркутский областной суд</strong><span>ул. Байкальская, 121</span></li>
             <li><strong>Арбитражный суд Иркутской области</strong><span>бул. Гагарина, 70</span></li>
@@ -288,6 +338,7 @@
             <li><strong>Иркутский районный суд</strong><span>ул. Байкальская, 30</span></li>
           </ul>
           <p class="fine-print">Перед поездкой проверьте адрес и режим работы суда: они могут меняться.</p>
+          </details>
         </div>
         <div class="geography-photo-wrap"><div class="photo-frame geography-photo"><img src="images/court-preparation.jpg" alt="Подготовленные к судебной работе папка, кодексы и ноутбук" width="1280" height="853" loading="lazy"></div><div class="geo-note"><span class="mono">ДИСТАНЦИОННО</span><p>Документы и связь — онлайн. Формат подачи зависит от суда и вида производства.</p></div></div>
       </div>
@@ -297,12 +348,16 @@
       <div class="section-shell faq-layout">
         <div><p class="eyebrow">Перед обращением</p><h2>Частые вопросы</h2><p>Если ситуация срочная, укажите дату получения акта и ближайшее процессуальное действие.</p></div>
         <div class="faq-list">
-          <details><summary>Как проверить крайний срок подачи?</summary><p>Выберите вид акта и укажите дату вручения в радаре сроков. Это ориентир: правила исчисления могут зависеть от производства, способа вручения и применимой нормы.</p></details>
-          <details><summary>Сколько стоит подготовка документа?</summary><p>Калькулятор показывает ориентировочную сумму по базовой стоимости, категории спора, формату и срочности. Точная стоимость подтверждается после уточнения обстоятельств и объема материалов.</p></details>
-          <details><summary>Можно ли обратиться из другого региона?</summary><p>Да. Консультация по материалам и подготовка документа возможны дистанционно. Электронная подача зависит от доступной системы и правил конкретного суда.</p></details>
-          <details><summary>Мария участвует в заседаниях?</summary><p>Очное участие обсуждается для Иркутска и Иркутского района отдельно, с учетом суда, даты и предмета поручения.</p></details>
-          <details><summary>Что делать, если срок уже пропущен?</summary><p>Нужно проверить причину пропуска и доказательства, а затем определить возможность ходатайства о восстановлении срока. Само обращение не гарантирует его восстановления.</p></details>
-          <details><summary>Ведет ли Мария уголовные дела?</summary><p>Нет. Специализация Марии — гражданские, арбитражные и административные дела. Уголовные дела по УК РФ и УПК РФ не принимаются.</p></details>
+          <details><summary>Сколько стоит первичный разбор ситуации и когда заключается договор?</summary><p>Ознакомление с задачей и проверка соответствия профилю бесплатны. Оплата начинается только после согласования стоимости и заключения письменного договора.</p></details>
+          <details><summary>Нужно ли приезжать лично, если я нахожусь в Иркутске или в другом регионе?</summary><p>Нет, первично обсудить задачу и передать копии документов можно дистанционно. Очные встречи и участие в суде согласуются для Иркутска и Иркутского района; по РФ доступна дистанционная подготовка документов.</p></details>
+          <details><summary>Какие документы подготовить к первому обращению?</summary><p>Подготовьте полученный судебный акт или иск целиком, конверт либо подтверждение даты получения, договоры, платежные документы и переписку, относящиеся к спору. Точный список зависит от ситуации.</p></details>
+          <details><summary>Можно ли сначала узнать ориентир по срокам и цене, а затем решить, заказывать ли документ?</summary><p>Да. Инструменты на сайте дают предварительные ориентиры и помогают собрать список документов. После ознакомления с материалами Мария сообщит точную стоимость до заключения договора; решение о заказе остается за вами.</p></details>
+          <details><summary>Как проверить крайний процессуальный срок подачи?</summary><p>Укажите вид акта и дату его вручения в инструменте проверки сроков. Результат является предварительным ориентиром: проверьте дату и способ доставки по конверту РПО, Госуслугам или публикации в картотеке суда.</p></details>
+          <details><summary>Из чего складывается стоимость подготовки документа и что в нее не входит?</summary><p>Базовая стоимость включает изучение материалов, правовую оценку, проект документа с расчетом требований, одну итерацию согласованных правок и инструкцию по подаче. Пошлина, почтовые и нотариальные расходы, платные справки и экспертизы, участие в заседаниях и работа в следующих инстанциях оплачиваются отдельно.</p></details>
+          <details><summary>Как защищаются переданные документы и сведения о деле?</summary><p>Не отправляйте через форму сведения, требующие особой защиты, и избыточные данные третьих лиц. На демонстрационном GitHub Pages форма не передает и не хранит данные. При работе по договору способ передачи материалов и режим конфиденциальности согласуются отдельно.</p></details>
+          <details><summary>Участвует ли Мария лично в судебных заседаниях?</summary><p>Личное участие обсуждается отдельно и возможно для Иркутска и Иркутского района при согласовании объема поручения, суда и даты. Подготовка или подача документа сама по себе не означает представительства во всех заседаниях.</p></details>
+          <details><summary>Что делать, если процессуальный срок уже пропущен?</summary><p>Нужно проверить, когда и каким способом получен акт, причины пропуска и подтверждающие документы. Мария оценит возможность подготовить ходатайство о восстановлении срока, но решение принимает суд.</p></details>
+          <details><summary>Что произойдет, если ситуация не относится к специализации (например, уголовное дело) или не имеет судебной перспективы?</summary><p>Мария проверит соответствие вопроса специализации и сообщит, если не сможет принять поручение. Если на старте не обнаружатся правовые основания для иска или жалобы, об этом будет сообщено до заключения договора.</p></details>
         </div>
       </div>
     </section>
@@ -323,7 +378,7 @@
         <label class="field-label" for="client-phone">Телефон для связи</label><input id="client-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" required>
         <label class="field-label" for="client-city">Город или наименование суда</label><input id="client-city" name="city" maxlength="100" value="Иркутск" placeholder="Например: Иркутск, Кировский районный суд">
         <label class="field-label" for="contact-slot">Удобное время звонка · Иркутск</label><select id="contact-slot" name="contactSlot"><option value="Любое время">Любое время</option><option value="09:00–12:00">09:00–12:00</option><option value="12:00–16:00">12:00–16:00</option><option value="16:00–19:00">16:00–19:00</option></select>
-        <label class="field-label" for="client-message">Коротко о ситуации</label><textarea id="client-message" name="message" rows="4" maxlength="2000" placeholder="Например: получил судебный приказ 12 мая, банк списал деньги"></textarea>
+        <label class="field-label" for="client-message">Коротко о ситуации (необязательно, до 500 символов)</label><textarea id="client-message" name="message" rows="4" maxlength="500" placeholder="Не вводите чувствительные данные третьих лиц и сведения, требующие особой защиты."></textarea>
         <input type="hidden" name="docType" value="order_cancel"><input type="hidden" name="disputeCategory" value="debt_contract"><input type="hidden" name="workFormat" value="doc_only"><input type="hidden" name="urgency" value="standard"><input type="hidden" name="totalPrice" value="3000"><input type="hidden" name="deadline" value="">
         <input class="honeypot" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
         <label class="consent-label"><input id="consent" name="consent" type="checkbox" required><span>Согласен на обработку персональных данных в соответствии с <button type="button" class="inline-link" data-policy-open>Политикой обработки ПДн</button>.</span></label>
@@ -344,15 +399,15 @@
     </div>
   </footer>
 
-  <div class="mobile-action-bar" aria-label="Быстрые действия"><a class="button button-primary" href="#calculator">Рассчитать стоимость</a><a class="mobile-call" href="#request" aria-label="Оставить заявку">Заявка ↗</a></div>
+  <div class="mobile-action-bar" aria-label="Быстрые действия"><a class="button button-primary" href="#request">Первичный разбор</a><a class="mobile-call" href="#calculator">Сроки и стоимость</a></div>
 
   <dialog class="policy-dialog" id="policy-dialog" aria-labelledby="policy-title">
     <div class="policy-dialog-head"><p class="eyebrow">Федеральный закон № 152-ФЗ</p><button type="button" class="dialog-close" aria-label="Закрыть политику">×</button></div>
     <h2 id="policy-title">Политика обработки персональных данных</h2>
-    <p>Оператор: Мария, частнопрактикующий юрист. Данные, которые вы указываете в форме, используются только для связи по вашему обращению, уточнения ситуации и согласования возможной юридической помощи.</p>
+    <p>Мария — частнопрактикующий юрист. Эта страница является учебным демонстрационным прототипом. На статическом хостинге GitHub Pages сведения из формы не собираются, не передаются и не хранятся; отправка там не создает реальную заявку. При развертывании на отдельном PHP-хостинге обработка возможна только по правилам, указанным для такого развертывания и после актуализации сведений об операторе.</p>
     <h3>Какие данные обрабатываются</h3><p>Имя, номер телефона, город или наименование суда, выбранное время связи, описание ситуации, параметры предварительного расчета и технические данные, необходимые для защиты формы от автоматических отправок. Данные не сохраняются в браузерном хранилище.</p>
     <h3>Цели и правовое основание</h3><p>Обработка осуществляется с вашего согласия для ответа на обращение и подготовки к заключению договора по вашей инициативе. Не указывайте лишние сведения и данные третьих лиц.</p>
-    <h3>Хранение и защита</h3><p>Заявки хранятся в закрытом журнале на сервере сайта и доступны только для обработки обращений. Данные не передаются для рекламы. Переписка в мессенджере регулируется также правилами соответствующего сервиса.</p>
+    <h3>Хранение и защита</h3><p>На демонстрационном домене GitHub Pages серверный обработчик не используется, персональные данные не собираются и не сохраняются. При отдельном развертывании на PHP-хостинге заявки могут храниться в закрытом журнале и использоваться только для ответа на обращение. Переписка в мессенджере регулируется также правилами соответствующего сервиса.</p>
     <h3>Ваши права</h3><p>Вы вправе запросить сведения об обработке, уточнение или удаление данных, а также отозвать согласие, направив соответствующее сообщение через форму сайта.</p>
     <p class="fine-print">Перед публикацией укажите в договоре и настройках хостинга актуальные сведения об операторе, сроках хранения, адресе для обращений и трансграничной передаче данных. Эта веб-политика не заменяет юридическую проверку соответствия ФЗ-152.</p>
     <button type="button" class="button button-primary dialog-done">Понятно</button>
@@ -362,7 +417,22 @@
   {"@context":"https://schema.org","@type":"LegalService","name":"Частная юридическая практика Марии","areaServed":[{"@type":"City","name":"Иркутск"},{"@type":"Country","name":"Россия"}],"description":"Подготовка процессуальных документов и судебное сопровождение в Иркутске и дистанционно по России.","availableLanguage":"Russian"}
   </script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Как проверить крайний срок подачи?","acceptedAnswer":{"@type":"Answer","text":"Выберите вид акта и укажите дату вручения в радаре сроков. Расчет является ориентиром и зависит от применимых процессуальных норм."}},{"@type":"Question","name":"Сколько стоит подготовка документа?","acceptedAnswer":{"@type":"Answer","text":"Калькулятор рассчитывает ориентир с учетом документа, категории спора, формата и срочности. Точная стоимость подтверждается после уточнения объема работы."}},{"@type":"Question","name":"Можно ли обратиться из другого региона?","acceptedAnswer":{"@type":"Answer","text":"Подготовка документов доступна дистанционно по всей России. Порядок подачи зависит от вида производства и суда."}},{"@type":"Question","name":"Ведет ли Мария уголовные дела?","acceptedAnswer":{"@type":"Answer","text":"Нет. Мария специализируется на гражданских, арбитражных и административных делах."}}]}
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type":"Question","name":"Сколько стоит первичный разбор ситуации и когда заключается договор?","acceptedAnswer":{"@type":"Answer","text":"Ознакомление с задачей и проверка соответствия профилю бесплатны. Оплата начинается только после согласования стоимости и заключения письменного договора."}},
+      {"@type":"Question","name":"Нужно ли приезжать лично, если я нахожусь в Иркутске или в другом регионе?","acceptedAnswer":{"@type":"Answer","text":"Первично обсудить задачу и передать копии документов можно дистанционно. Очные встречи и участие в суде согласуются для Иркутска и Иркутского района; по России доступна дистанционная подготовка документов."}},
+      {"@type":"Question","name":"Какие документы подготовить к первому обращению?","acceptedAnswer":{"@type":"Answer","text":"Подготовьте полученный судебный акт или иск целиком, конверт либо подтверждение даты получения, договоры, платежные документы и переписку, относящиеся к спору. Точный список зависит от ситуации."}},
+      {"@type":"Question","name":"Можно ли сначала узнать ориентир по срокам и цене, а затем решить, заказывать ли документ?","acceptedAnswer":{"@type":"Answer","text":"Да. Инструменты дают предварительные ориентиры и помогают собрать список документов. После ознакомления с материалами Мария сообщит точную стоимость до заключения договора; решение о заказе остается за вами."}},
+      {"@type":"Question","name":"Как проверить крайний процессуальный срок подачи?","acceptedAnswer":{"@type":"Answer","text":"Укажите вид акта и дату его вручения в инструменте проверки сроков. Результат является предварительным ориентиром: проверьте дату и способ доставки по конверту РПО, Госуслугам или публикации в картотеке суда."}},
+      {"@type":"Question","name":"Из чего складывается стоимость подготовки документа и что в нее не входит?","acceptedAnswer":{"@type":"Answer","text":"Базовая стоимость включает изучение материалов, правовую оценку, проект документа с расчетом требований, одну итерацию согласованных правок и инструкцию по подаче. Пошлина, почтовые и нотариальные расходы, платные справки и экспертизы, участие в заседаниях и работа в следующих инстанциях оплачиваются отдельно."}},
+      {"@type":"Question","name":"Как защищаются переданные документы и сведения о деле?","acceptedAnswer":{"@type":"Answer","text":"Не отправляйте через форму сведения, требующие особой защиты, и избыточные данные третьих лиц. На демонстрационном GitHub Pages форма не передает и не хранит данные. Способ передачи материалов и режим конфиденциальности согласуются отдельно."}},
+      {"@type":"Question","name":"Участвует ли Мария лично в судебных заседаниях?","acceptedAnswer":{"@type":"Answer","text":"Личное участие обсуждается отдельно и возможно для Иркутска и Иркутского района при согласовании объема поручения, суда и даты. Подготовка или подача документа сама по себе не означает представительства во всех заседаниях."}},
+      {"@type":"Question","name":"Что делать, если процессуальный срок уже пропущен?","acceptedAnswer":{"@type":"Answer","text":"Нужно проверить, когда и каким способом получен акт, причины пропуска и подтверждающие документы. Мария оценит возможность подготовить ходатайство о восстановлении срока, но решение принимает суд."}},
+      {"@type":"Question","name":"Что произойдет, если ситуация не относится к специализации (например, уголовное дело) или не имеет судебной перспективы?","acceptedAnswer":{"@type":"Answer","text":"Мария проверит соответствие вопроса специализации и сообщит, если не сможет принять поручение. Если правовых оснований для иска или жалобы нет, об этом будет сообщено до заключения договора."}}
+    ]
+  }
   </script>
 </body>
 </html>

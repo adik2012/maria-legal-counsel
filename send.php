@@ -139,7 +139,7 @@ if (cleanText($data['website'] ?? '', 200) !== '') {
 
 $name = cleanText($data['name'] ?? '', 80);
 $phone = cleanText($data['phone'] ?? '', 32);
-$message = cleanText($data['message'] ?? '', 2000);
+$message = cleanText($data['message'] ?? '', 500);
 $contactSlot = cleanText($data['contactSlot'] ?? '', 40);
 $city = cleanText($data['city'] ?? '', 100);
 $deadline = cleanText($data['deadline'] ?? '', 10);

@@ -60,7 +60,8 @@
     koap: { days: 10, title: "Постановление по КоАП РФ", docType: "koap_kas", category: "auto_fssp", statute: "ст. 30.3 КоАП РФ" },
     bailiff: { days: 10, title: "Действие или постановление пристава", docType: "koap_kas", category: "auto_fssp", statute: "ст. 219 КАС РФ" },
     appeal: { months: 1, title: "Решение суда первой инстанции", docType: "appeal", category: "debt_contract", statute: "ст. 321 ГПК РФ / ст. 259 АПК РФ" },
-    private: { days: 15, title: "Определение суда", docType: "appeal", category: "debt_contract", statute: "ст. 332 ГПК РФ" }
+    private: { days: 15, title: "Определение суда", docType: "appeal", category: "debt_contract", statute: "ст. 332 ГПК РФ" },
+    apk_days: { workingDays: 10, title: "Акт арбитражного суда (АПК РФ)", docType: "appeal", category: "arbitration", statute: "ч. 3 ст. 113, ч. 4 ст. 114 АПК РФ" }
   };
 
   const checklistBase = {
@@ -210,6 +211,16 @@
     return new Date(Date.UTC(targetFirst.getUTCFullYear(), targetFirst.getUTCMonth(), Math.min(day, lastDay)));
   }
 
+  function isNonWorkingDay(utcDate) {
+    const weekday = utcDate.getUTCDay();
+    const monthDay = `${String(utcDate.getUTCMonth() + 1).padStart(2, "0")}-${String(utcDate.getUTCDate()).padStart(2, "0")}`;
+    const fixedHolidays = new Set([
+      "01-01", "01-02", "01-03", "01-04", "01-05", "01-06", "01-07", "01-08",
+      "02-23", "03-08", "05-01", "05-09", "06-12", "11-04"
+    ]);
+    return weekday === 0 || weekday === 6 || fixedHolidays.has(monthDay);
+  }
+
   function renderDeadline() {
     const result = $("#deadline-result");
     const dateValue = $("#received-date").value;
@@ -224,28 +235,36 @@
     }
     const [year, month, day] = dateValue.split("-").map(Number);
     const received = new Date(Date.UTC(year, month - 1, day));
-    let due = type.months ? addCalendarMonth(received) : new Date(received.getTime() + type.days * 86400000);
-    const dayOfWeek = due.getUTCDay();
-    let weekendNote = "";
-    if (dayOfWeek === 6) {
-      due = new Date(due.getTime() + 2 * 86400000);
-      weekendNote = " Выходной день перенесен на понедельник по правилу ст. 108 ГПК РФ.";
-    } else if (dayOfWeek === 0) {
-      due = new Date(due.getTime() + 86400000);
-      weekendNote = " Выходной день перенесен на понедельник по правилу ст. 108 ГПК РФ.";
+    let due;
+    let calculationNote = "";
+    if (type.workingDays) {
+      due = new Date(received.getTime());
+      let countedDays = 0;
+      while (countedDays < type.workingDays) {
+        due = new Date(due.getTime() + 86400000);
+        if (!isNonWorkingDay(due)) countedDays += 1;
+      }
+      calculationNote = " Расчет выполнен в рабочих днях без учета выходных и официальных праздничных дней РФ (ч. 3 ст. 113 АПК РФ).";
+    } else {
+      due = type.months ? addCalendarMonth(received) : new Date(received.getTime() + type.days * 86400000);
+      if (isNonWorkingDay(due)) {
+        while (isNonWorkingDay(due)) due = new Date(due.getTime() + 86400000);
+        calculationNote = " Окончание срока перенесено с нерабочего (выходного или праздничного) дня на ближайший рабочий день (ч. 2 ст. 108 ГПК РФ).";
+      }
     }
+    const deliveryNote = " Дата является предварительным ориентиром и требует сверки со способом доставки (почтовый конверт РПО, Госуслуги, публикация в картотеке суда).";
     const today = getIrkutskDate();
     const remaining = Math.round((due.getTime() - today.getTime()) / 86400000);
     latestDeadline = `${due.getUTCFullYear()}-${String(due.getUTCMonth() + 1).padStart(2, "0")}-${String(due.getUTCDate()).padStart(2, "0")}`;
     const dueText = new Intl.DateTimeFormat("ru-RU", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(due);
     let marker;
     let title;
-    let note = `${type.statute}. Дата получения не включена в расчетный период.${weekendNote}`;
+    let note = `${type.statute}. Течение срока начинается на следующий день после даты получения.${calculationNote}${deliveryNote}`;
     if (remaining < 0) {
       result.classList.add("status-expired");
       marker = "СРОК ИСТЕК";
       title = `Крайняя дата: ${dueText}`;
-      note = `Проверьте возможность ходатайства о восстановлении срока по ст. 112 ГПК РФ. Это зависит от причин пропуска и применимого порядка.${weekendNote}`;
+      note = `Проверьте возможность ходатайства о восстановлении срока. Это зависит от причин пропуска и применимого порядка.${calculationNote}${deliveryNote}`;
     } else if (remaining <= 3) {
       result.classList.add("status-urgent");
       marker = remaining === 0 ? "ГОРЯЩИЙ СРОК · ПОСЛЕДНИЙ ДЕНЬ" : "ГОРЯЩИЙ СРОК";
@@ -592,6 +611,8 @@
       const scenarios = {
         summons: { docType: "objection", disputeCategory: "debt_contract", urgency: "standard" },
         order: { docType: "order_cancel", disputeCategory: "debt_contract", urgency: "urgent" },
+        bailiff: { docType: "koap_kas", disputeCategory: "auto_fssp", urgency: "urgent" },
+        appeal: { docType: "appeal", disputeCategory: "debt_contract", urgency: "urgent" },
         traffic: { docType: "koap_kas", disputeCategory: "auto_fssp", urgency: "urgent" }
       };
       Object.entries(scenarios[button.dataset.scenario]).forEach(([key, value]) => setCalcValue(key, value));
