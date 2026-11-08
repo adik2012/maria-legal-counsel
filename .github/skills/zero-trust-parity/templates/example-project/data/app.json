@@ -1,0 +1,15 @@
+{
+  "mode": "demo",
+  "legal_doc_version": "v2026.11",
+  "vat_rate": 22,
+  "max_qty": 99,
+  "max_items": 50,
+  "max_body_bytes": 65536,
+  "rate_limit_per_minute": 10,
+  "allowed_hosts": ["shop.example"],
+  "required_consents": ["offer", "pd_main"],
+  "payment_methods": ["card", "sbp"],
+  "options": { "pickup": { "fee_kop": 0 }, "courier": { "fee_kop": 49000 } },
+  "legal_docs": { "offer": "docs/offer.html", "privacy": "docs/privacy.html" },
+  "retention_days": 365
+}

@@ -1,0 +1,10 @@
+{
+  "name": "maria-legal-counsel-case4",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check:static": "node scripts/check_static.mjs",
+    "test:parity": "node scripts/test_parity_php.mjs 300 --security",
+    "test:mutation": "node scripts/test_parity_php.mjs --mutate"
+  }
+}

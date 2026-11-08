@@ -1,0 +1,6 @@
+{
+  "SVC-001": { "name": "Услуга A", "price_kop": 150000 },
+  "SVC-002": { "name": "Услуга B", "price_kop": 99900 },
+  "GOOD-10": { "name": "Товар C", "price_kop": 12345 },
+  "GOOD-11": { "name": "Товар D", "price_kop": 5 }
+}

@@ -1,0 +1,29 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php: ["8.0", "8.3"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: mbstring
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node scripts/check_static.mjs
+      - run: node scripts/test_parity_php.mjs 300 --security
+      - run: node scripts/test_parity_php.mjs --mutate

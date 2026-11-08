@@ -1,32 +1,11 @@
+import { calcCase4Price } from "./js/domain/case4-pricing.js";
+import { esc } from "./js/ui/esc.js";
+
 (() => {
   "use strict";
 
-  const prices = {
-    documents: {
-      order_cancel: 3000,
-      koap_kas: 5000,
-      claim: 7000,
-      objection: 7000,
-      appeal: 10000
-    },
-    categories: {
-      debt_contract: 1,
-      consumer: 1,
-      auto_fssp: 1.1,
-      family_inherit: 1.15,
-      realty_land: 1.25,
-      arbitration: 1.4
-    },
-    formats: {
-      doc_only: 0,
-      doc_filing: 2500,
-      turnkey_irkutsk: 15000
-    },
-    urgency: {
-      standard: 1,
-      urgent: 1.3
-    }
-  };
+  let appConfig;
+  let prices;
 
   const labels = {
     documents: {
@@ -122,14 +101,15 @@
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
   const formatMoney = (value) => new Intl.NumberFormat("ru-RU").format(value);
-  const roundHundred = (value) => Math.round(value / 100) * 100;
+  const formatKopecks = (value) => formatMoney(value / 100);
+  const displayRatio = ({ numerator, denominator }) => (numerator / denominator).toLocaleString("ru-RU");
 
   function readSavedState() {
     try {
       const saved = JSON.parse(localStorage.getItem(storageKey) || "null");
       if (!saved || typeof saved !== "object") return;
       for (const key of Object.keys(defaults)) {
-        if (Object.prototype.hasOwnProperty.call(saved, key) && prices[key === "docType" ? "documents" : key === "disputeCategory" ? "categories" : key === "workFormat" ? "formats" : "urgency"][saved[key]] !== undefined) {
+        if (Object.prototype.hasOwnProperty.call(saved, key) && Object.prototype.hasOwnProperty.call(prices[key], saved[key])) {
           state[key] = saved[key];
         }
       }
@@ -147,7 +127,7 @@
   }
 
   function setCalcValue(key, value) {
-    const table = key === "docType" ? prices.documents : key === "disputeCategory" ? prices.categories : key === "workFormat" ? prices.formats : prices.urgency;
+    const table = prices[key];
     if (!Object.prototype.hasOwnProperty.call(table, value)) return;
     state[key] = value;
     const radio = $(`input[name="${key}"][value="${value}"]`);
@@ -158,19 +138,23 @@
   }
 
   function currentPrice() {
-    const documentCost = roundHundred(prices.documents[state.docType] * prices.categories[state.disputeCategory]);
-    const subtotal = documentCost + prices.formats[state.workFormat];
-    return { documentCost, subtotal, total: roundHundred(subtotal * prices.urgency[state.urgency]) };
+    return calcCase4Price(appConfig, {
+      items: [{ code: state.docType, qty: 1 }],
+      disputeCategory: state.disputeCategory,
+      workFormat: state.workFormat,
+      urgency: state.urgency
+    });
   }
 
   function renderCalculator() {
     const price = currentPrice();
-    $("#total-price").textContent = formatMoney(price.total);
+    const calculator = appConfig.calculator;
+    $("#total-price").textContent = formatKopecks(price.totalKop);
     $("#price-breakdown").innerHTML = [
-      `<div class="breakdown-row"><span>${labels.documents[state.docType]}</span><span>${formatMoney(prices.documents[state.docType])} ₽</span></div>`,
-      `<div class="breakdown-row"><span>${labels.categories[state.disputeCategory]} · коэффициент</span><span>× ${prices.categories[state.disputeCategory].toLocaleString("ru-RU")}</span></div>`,
-      `<div class="breakdown-row"><span>${labels.formats[state.workFormat]}</span><span>+ ${formatMoney(prices.formats[state.workFormat])} ₽</span></div>`,
-      `<div class="breakdown-row"><span>${labels.urgency[state.urgency]}</span><span>× ${prices.urgency[state.urgency].toLocaleString("ru-RU")}</span></div>`
+      `<div class="breakdown-row"><span>${esc(labels.documents[state.docType])}</span><span>${esc(formatKopecks(calculator.base_price_kop[state.docType]))} ₽</span></div>`,
+      `<div class="breakdown-row"><span>${esc(labels.categories[state.disputeCategory])} · коэффициент</span><span>× ${esc(displayRatio(calculator.category_multiplier[state.disputeCategory]))}</span></div>`,
+      `<div class="breakdown-row"><span>${esc(labels.formats[state.workFormat])}</span><span>+ ${esc(formatKopecks(appConfig.options[state.workFormat].fee_kop))} ₽</span></div>`,
+      `<div class="breakdown-row"><span>${esc(labels.urgency[state.urgency])}</span><span>× ${esc(displayRatio(calculator.urgency_multiplier[state.urgency]))}</span></div>`
     ].join("");
 
     const priority = $("#priority-status");
@@ -178,21 +162,15 @@
     priority.parentElement.classList.toggle("is-urgent", state.urgency === "urgent");
 
     const checklist = [...checklistBase[state.docType], ...(categoryChecklist[state.disputeCategory] || [])];
-    $("#photo-checklist").innerHTML = checklist.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
-    $("#request-price").textContent = `РАСЧЕТ: ${formatMoney(price.total)} ₽`;
+    $("#photo-checklist").innerHTML = checklist.map((item) => `<li>${esc(item)}</li>`).join("");
+    $("#request-price").textContent = `РАСЧЕТ: ${formatKopecks(price.totalKop)} ₽`;
     const form = $("#request-form");
     for (const key of Object.keys(defaults)) {
       const hidden = $(`input[name="${key}"]`, form);
       if (hidden) hidden.value = state[key];
     }
-    $('input[name="totalPrice"]', form).value = String(price.total);
+    $('input[name="totalPrice"]', form).value = String(price.totalKop);
     refreshMessagePreview();
-  }
-
-  function escapeHtml(value) {
-    return String(value).replace(/[&<>"']/g, (character) => ({
-      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
-    })[character]);
   }
 
   function getIrkutskDate() {
@@ -274,7 +252,7 @@
       title = `Крайняя дата: ${dueText}`;
       note = `Осталось ${remaining} дн. ${note}`;
     }
-    result.innerHTML = `<span class="result-mark">${escapeHtml(marker)}</span><h3>${escapeHtml(title)}</h3><p>${escapeHtml(note)}</p>`;
+    result.innerHTML = `<span class="result-mark">${esc(marker)}</span><h3>${esc(title)}</h3><p>${esc(note)}</p>`;
     refreshMessagePreview();
   }
 
@@ -299,8 +277,8 @@
       `Предварительный ориентир крайней даты подачи: ${dateLabel}`,
       `Город / суд: ${city}`,
       `Формат связи: ${geoMode}`,
-      `Предварительный ориентир стоимости: ${formatMoney(price.total)} ₽`,
-      `Разбивка: базовая цена ${formatMoney(prices.documents[state.docType])} ₽ × коэффициент категории ${prices.categories[state.disputeCategory].toLocaleString("ru-RU")} = ${formatMoney(price.documentCost)} ₽; формат + ${formatMoney(prices.formats[state.workFormat])} ₽; сумма до срочности ${formatMoney(price.subtotal)} ₽; срочность × ${prices.urgency[state.urgency].toLocaleString("ru-RU")}; итог ${formatMoney(price.total)} ₽.`,
+      `Предварительный ориентир стоимости: ${formatKopecks(price.totalKop)} ₽`,
+      `Разбивка: базовая цена ${formatKopecks(appConfig.calculator.base_price_kop[state.docType])} ₽ × коэффициент категории ${displayRatio(appConfig.calculator.category_multiplier[state.disputeCategory])} = ${formatKopecks(price.documentCostKop)} ₽; формат + ${formatKopecks(price.formatAddonKop)} ₽; сумма до срочности ${formatKopecks(price.subtotalKop)} ₽; срочность × ${displayRatio(appConfig.calculator.urgency_multiplier[state.urgency])}; итог ${formatKopecks(price.totalKop)} ₽.`,
       "Что подготовить:\n" + currentChecklistText()
     ].join("\n");
   }
@@ -389,6 +367,10 @@
       showFormError("Подтвердите ознакомление с демонстрационным режимом.");
       return;
     }
+    if (appConfig.mode !== "demo") {
+      showFormError("Прием обращений не включен на этой демонстрационной странице.");
+      return;
+    }
     const form = $("#request-form");
     $("#form-error").hidden = true;
     $("#form-success").hidden = true;
@@ -446,11 +428,25 @@
 
   function initTaglineReveal() {
     const heading = $(".word-reveal");
-    const words = heading.innerHTML.split(/(<br\s*\/?>)/i).map((part) => {
-      if (/^<br\s*\/?>$/i.test(part)) return part;
-      return part.split(/(\s+)/).map((piece) => /^\s+$/.test(piece) ? piece : `<span class="word">${piece}</span>`).join("");
-    }).join("");
-    heading.innerHTML = words;
+    const fragment = document.createDocumentFragment();
+    heading.childNodes.forEach((node) => {
+      if (node.nodeType === Node.ELEMENT_NODE && node.nodeName === "BR") {
+        fragment.append(node.cloneNode());
+        return;
+      }
+      const pieces = node.textContent.split(/(\s+)/).filter((piece) => piece !== "");
+      pieces.forEach((piece) => {
+        if (/^\s+$/.test(piece)) {
+          fragment.append(document.createTextNode(piece));
+          return;
+        }
+        const span = document.createElement("span");
+        span.className = "word";
+        span.textContent = piece;
+        fragment.append(span);
+      });
+    });
+    heading.replaceChildren(fragment);
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -462,7 +458,51 @@
     $$(".word-reveal .word").forEach((word) => observer.observe(word));
   }
 
-  function init() {
+  function makePriceTables(config) {
+    const calculator = config.calculator;
+    return {
+      docType: calculator.base_price_kop,
+      disputeCategory: calculator.category_multiplier,
+      workFormat: Object.fromEntries(
+        Object.entries(config.options).map(([key, option]) => [key, option.fee_kop])
+      ),
+      urgency: calculator.urgency_multiplier
+    };
+  }
+
+  async function init() {
+    try {
+      const configResponse = await fetch(new URL("./data/app.json", import.meta.url), {
+        credentials: "same-origin"
+      });
+      if (!configResponse.ok) {
+        throw new Error(`Конфигурация недоступна: HTTP ${configResponse.status}`);
+      }
+      appConfig = await configResponse.json();
+      if (!appConfig || !["demo", "live"].includes(appConfig.mode)) {
+        throw new Error("В конфигурации указан недопустимый режим формы.");
+      }
+      $("#contact-slot").replaceChildren(...appConfig.time_slots.map(({ value, label }) => {
+        const option = document.createElement("option");
+        option.value = value;
+        option.textContent = label;
+        return option;
+      }));
+      prices = makePriceTables(appConfig);
+      calcCase4Price(appConfig, {
+        items: [{ code: defaults.docType, qty: 1 }],
+        disputeCategory: defaults.disputeCategory,
+        workFormat: defaults.workFormat,
+        urgency: defaults.urgency
+      });
+    } catch (error) {
+      console.error("Не удалось безопасно загрузить конфигурацию проекта.", error);
+      showFormError("Конфигурация недоступна. Демонстрационная форма не запущена.");
+      $("#submit-button").disabled = true;
+      $("#submit-button").setAttribute("aria-disabled", "true");
+      return;
+    }
+
     $$('a[href="#top"]').forEach((link) => link.addEventListener("click", (event) => {
       event.preventDefault();
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -603,5 +643,5 @@
     $$(".reveal").forEach((element) => revealObserver.observe(element));
   }
 
-  document.addEventListener("DOMContentLoaded", init);
+  document.addEventListener("DOMContentLoaded", () => { void init(); });
 })();

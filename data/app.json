@@ -1,0 +1,102 @@
+{
+  "mode": "demo",
+  "legal_doc_version": "case4-demo-2026-11-08-v1",
+  "allowed_hosts": [],
+  "max_body_bytes": 32768,
+  "rate_limit_per_minute": 5,
+  "retention_days": 30,
+  "required_consents": [],
+  "required_acknowledgements": [
+    "demo_mode"
+  ],
+  "max_comment_chars": 500,
+  "time_slots": [
+    {
+      "value": "Любое время",
+      "label": "Любое время"
+    },
+    {
+      "value": "09:00–12:00",
+      "label": "09:00–12:00"
+    },
+    {
+      "value": "12:00–16:00",
+      "label": "12:00–16:00"
+    },
+    {
+      "value": "16:00–19:00",
+      "label": "16:00–19:00"
+    }
+  ],
+  "max_qty": 99,
+  "max_items": 50,
+  "vat_rate": 0,
+  "min_name_chars": 2,
+  "max_name_chars": 100,
+  "min_phone_digits": 10,
+  "max_phone_chars": 32,
+  "max_email_chars": 254,
+  "max_city_chars": 100,
+  "max_request_id_chars": 36,
+  "order_id_attempts": 5,
+  "request_id_ttl_seconds": 86400,
+  "payment_methods": [],
+  "options": {
+    "doc_only": {
+      "fee_kop": 0
+    },
+    "doc_filing": {
+      "fee_kop": 250000
+    },
+    "turnkey_irkutsk": {
+      "fee_kop": 1500000
+    }
+  },
+  "legal_docs": {},
+  "calculator": {
+    "rounding_increment_kop": 10000,
+    "base_price_kop": {
+      "order_cancel": 300000,
+      "koap_kas": 500000,
+      "claim": 700000,
+      "objection": 700000,
+      "appeal": 1000000
+    },
+    "category_multiplier": {
+      "debt_contract": {
+        "numerator": 100,
+        "denominator": 100
+      },
+      "consumer": {
+        "numerator": 100,
+        "denominator": 100
+      },
+      "auto_fssp": {
+        "numerator": 110,
+        "denominator": 100
+      },
+      "family_inherit": {
+        "numerator": 115,
+        "denominator": 100
+      },
+      "realty_land": {
+        "numerator": 125,
+        "denominator": 100
+      },
+      "arbitration": {
+        "numerator": 140,
+        "denominator": 100
+      }
+    },
+    "urgency_multiplier": {
+      "standard": {
+        "numerator": 100,
+        "denominator": 100
+      },
+      "urgent": {
+        "numerator": 130,
+        "denominator": 100
+      }
+    }
+  }
+}

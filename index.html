@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'">
+  <meta name="referrer" content="no-referrer">
   <meta name="theme-color" content="#F3EFE6">
   <meta name="description" content="Учебный демонстрационный проект о цифровом продукте для юридической практики. Мария и условия работы вымышлены; реальные услуги не оказываются.">
   <meta property="og:type" content="website">
@@ -13,11 +15,8 @@
   <meta name="twitter:card" content="summary_large_image">
   <title>Учебный проект — юридическая практика Марии</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%2312161C'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-family='Georgia' font-size='42' fill='%23F3EFE6'%3E%D0%9C%3C/text%3E%3C/svg%3E">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-  <script src="script.js" defer></script>
+  <script src="script.js" type="module"></script>
 </head>
 <body id="top">
   <a class="skip-link" href="#main">Перейти к содержанию</a>
@@ -396,7 +395,7 @@
         <label class="field-label" for="client-name">Имя для демонстрации (необязательно)</label><input id="client-name" name="name" autocomplete="off" maxlength="80">
         <label class="field-label" for="client-phone">Телефон для демонстрации (необязательно)</label><input id="client-phone" name="phone" type="tel" inputmode="tel" autocomplete="off" placeholder="+7 (___) ___-__-__">
         <label class="field-label" for="client-city">Город или наименование суда (учебный пример)</label><input id="client-city" name="city" maxlength="100" value="Иркутск" placeholder="Например: Иркутск, Кировский районный суд">
-        <label class="field-label" for="contact-slot">Удобное время звонка · Иркутск</label><select id="contact-slot" name="contactSlot"><option value="Любое время">Любое время</option><option value="09:00–12:00">09:00–12:00</option><option value="12:00–16:00">12:00–16:00</option><option value="16:00–19:00">16:00–19:00</option></select>
+        <label class="field-label" for="contact-slot">Удобное время звонка · Иркутск</label><select id="contact-slot" name="contactSlot"></select>
         <label class="field-label" for="client-message">Коротко о ситуации (необязательно, до 500 символов)</label><textarea id="client-message" name="message" rows="4" maxlength="500" placeholder="Не вводите чувствительные данные третьих лиц и сведения, требующие особой защиты."></textarea>
         <input type="hidden" name="docType" value="order_cancel"><input type="hidden" name="disputeCategory" value="debt_contract"><input type="hidden" name="workFormat" value="doc_only"><input type="hidden" name="urgency" value="standard"><input type="hidden" name="totalPrice" value="3000"><input type="hidden" name="deadline" value="">
         <input class="honeypot" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
